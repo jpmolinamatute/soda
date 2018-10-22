@@ -1,0 +1,87 @@
+<template name="appHome">
+    {{> addStudent}}
+    <div id="app-home">
+        <div id="left-panel">
+            <button id="display-new-student" type="button" class="btn btn-primary btn-md">Nuevo</button>
+            <div class="form-group">
+                <label for="search-student">Buscar</label>
+                <input id="search-student" type="text" class="form-control">
+            </div>
+
+            {{#if hasStudent students}}
+                <div id="student-list">
+                    <ul>
+                        {{#each students}}
+                            <li>
+                                <button type="button" data-id="{{_id}}" data-type="student" class="btn btn-link btn-sm">
+                                    {{{filter name 'yes'}}}
+                                    {{{filter middle 'yes'}}}
+                                    {{{filter last1 'yes'}}}
+                                    {{{filter last2 'yes'}}}
+                                    {{{grade}}}
+                                </button>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{else}}
+                {{#if studentName}}
+                    <div id="student-list">
+                        <p class="text-danger">No existe ningun estudiante con este criterio {{studentName}}</p>
+                    </div>
+                {{/if}}
+            {{/if}}
+
+        </div>
+        <div id="right-panel">
+            <div class="right-top">
+                {{#if displayStudent}}
+                    <div id="student-history">
+                        <button id="print-history" type="button" class="btn btn-primary btn-md">Imprimir</button>
+                        <button id="close-history" type="button" class="btn btn-primary btn-md">Cerrar</button>
+                    </div>
+                    {{#with oneStudent}}
+                        <h1>
+                            {{{filter name 'no'}}}
+                            {{{filter middle 'no'}}}
+                            {{{filter last1 'no'}}}
+                            {{{filter last2 'no'}}}
+                        </h1>
+                    {{/with}}
+                    <button id="display-student-history" type="button" class="btn btn-primary btn-md">Historial</button>
+                    <div class="needs-validation" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="item-concept">Concepto</label>
+                                <input id="item-concept" type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label" for="type-charge">Gasto</label>
+                                    <input type="radio" class="form-check-input" id="type-charge" name="type" value="charge">
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label" for="type-pay">Pago</label>
+                                    <input type="radio" class="form-check-input" id="type-pay" name="type" value="pay">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="item-charge">Monto</label>
+                                <input id="item-charge" type="number" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="datepicker">Fecha</label>
+                                <input id="datepicker" type="date" class="form-control" required value="{{getToday}}"
+                                    max="{{getToday}}">
+                            </div>
+                        </div>
+                        <button id="save-item" type="button" class="btn btn-primary btn-md">Guardar</button>
+                    </div>
+                {{/if}}
+            </div>
+            <div class="right-bottom">
+                <p>Saldo de todos los estudiantes a la fecha {{saldo}}</p>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,104 @@
+<template name="addStudent">
+    <!-- <label for="student-search">Estudiante</label>
+    <input id="student-search" type="text"> -->
+    <div id="add-student" class="needs-validation" novalidate>
+        <h1>Information del Estudiante</h1>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="student-name">Primer Nombre</label>
+                    <input id="student-name" type="text" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="student-middle">Segundo Nombre</label>
+                    <input id="student-middle" type="text" class="form-control" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="student-last1">Primer Apellido</label>
+                    <input id="student-last1" type="text" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="student-last2">Segundo Apellido</label>
+                    <input id="student-last2" type="text" class="form-control" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="student-grade">Grado</label>
+                    <select id="student-grade" class="form-control" required>
+                        <option value="">--</option>
+                        <optgroup label="Prescolar">
+                            <option value="maternal">Maternal</option>
+                            <option value="prekinder">Prekinder</option>
+                            <option value="preparatorio">Preparatorio</option>
+                        </optgroup>
+                        <optgroup label="Primaria">
+                            <option value="1A">1A</option>
+                            <option value="1B">1B</option>
+                            <option value="1C">1C</option>
+                            <option value="1D">1D</option>
+                            <option value="2A">2A</option>
+                            <option value="2B">2B</option>
+                            <option value="2C">2C</option>
+                            <option value="2D">2D</option>
+                            <option value="3A">3A</option>
+                            <option value="3B">3B</option>
+                            <option value="3C">3C</option>
+                            <option value="3D">3D</option>
+                            <option value="4A">4A</option>
+                            <option value="4B">4B</option>
+                            <option value="4C">4C</option>
+                            <option value="4D">4D</option>
+                            <option value="5A">5A</option>
+                            <option value="5B">5B</option>
+                            <option value="5C">5C</option>
+                            <option value="5D">5D</option>
+                            <option value="6A">6A</option>
+                            <option value="6B">6B</option>
+                            <option value="6C">6C</option>
+                            <option value="6D">6D</option>
+                        </optgroup>
+                        <optgroup label="Secundaria">
+                            <option value="7A">7A</option>
+                            <option value="7B">7B</option>
+                            <option value="7C">7C</option>
+                            <option value="7D">7D</option>
+                            <option value="8A">8A</option>
+                            <option value="8B">8B</option>
+                            <option value="8C">8C</option>
+                            <option value="8D">8D</option>
+                            <option value="9A">9A</option>
+                            <option value="9B">9B</option>
+                            <option value="9C">9C</option>
+                            <option value="9D">9D</option>
+                            <option value="10A">10A</option>
+                            <option value="10B">10B</option>
+                            <option value="10C">10C</option>
+                            <option value="10D">10D</option>
+                            <option value="11A">11A</option>
+                            <option value="11B">11B</option>
+                            <option value="11C">11C</option>
+                            <option value="11D">11D</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 offset-md-3">
+                <button type="button" id="student-save" class="btn btn-primary btn-md">Guardar</button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" id="student-close" class="btn btn-default btn-md">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</template>

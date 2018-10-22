@@ -1,0 +1,36 @@
+<template name="history">
+    <div id="history-wrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Gasto</th>
+                    <th scope="col">Pago</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each history}}
+                    <tr>
+                        <td class="date">{{filterDate date}}</td>
+                        <td>{{concept}}</td>
+                        <td class="charge">{{filterCharge '+' charge}}</td>
+                        <td class="charge">{{filterCharge '-' charge}}</td>
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td colspan="4" class="center">Este estudiante no tiene historial</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+            {{#if history}}
+                <tfoot>
+                    <tr>
+                        <td colspan="4">{{total}}</td>
+                    </tr>
+                </tfoot>
+            {{/if}}
+        </table>
+    </div>
+
+</template>

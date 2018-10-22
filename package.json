@@ -1,0 +1,107 @@
+{
+    "name": "soda",
+    "private": true,
+    "scripts": {
+        "start": "MONGO_URL='mongodb://soda:dev@naruto:57017/soda' meteor run",
+        "test": "meteor test --once --driver-package meteortesting:mocha"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.1.2",
+        "meteor-node-stubs": "^0.4.1"
+    },
+    "devDependencies": {
+        "@meteorjs/eslint-config-meteor": "^1.0.5",
+        "babel-eslint": "^9.0.0",
+        "chai": "^4.1.2",
+        "eslint": "^5.6.1",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-import-resolver-meteor": "^0.4.0",
+        "eslint-plugin-html": "^4.0.6",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.2",
+        "eslint-plugin-meteor": "^5.1.0",
+        "eslint-plugin-mocha": "^5.2.0",
+        "eslint-plugin-react": "^7.11.1"
+    },
+    "eslintConfig": {
+        "root": true,
+        "parser": "babel-eslint",
+        "parserOptions": {
+            "allowImportExportEverywhere": true
+        },
+        "env": {
+            "meteor": true,
+            "es6": true,
+            "browser": true,
+            "mocha": true
+        },
+        "plugins": [
+            "meteor"
+        ],
+        "extends": [
+            "airbnb",
+            "@meteorjs/eslint-config-meteor",
+            "plugin:meteor/recommended"
+        ],
+        "settings": {
+            "import/resolver": "meteor"
+        },
+        "rules": {
+            "quotes": [
+                "error",
+                "single"
+            ],
+            "indent": [
+                "error",
+                4,
+                {
+                    "SwitchCase": 1
+                }
+            ],
+            "no-underscore-dangle": [
+                "error",
+                {
+                    "allow": [
+                        "_id",
+                        "_str",
+                        "_name"
+                    ]
+                }
+            ],
+            "prefer-destructuring": [
+                "error",
+                {
+                    "object": false,
+                    "array": false
+                }
+            ],
+            "max-len": [
+                "error",
+                {
+                    "code": 120
+                }
+            ],
+            "comma-dangle": [
+                "error",
+                "never"
+            ],
+            "no-param-reassign": [
+                "error",
+                {
+                    "props": false
+                }
+            ],
+            "no-console": [
+                "warn",
+                {
+                    "allow": [
+                        "warn",
+                        "error",
+                        "info",
+                        "trace"
+                    ]
+                }
+            ]
+        }
+    }
+}

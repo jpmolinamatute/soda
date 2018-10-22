@@ -1,0 +1,10 @@
+{
+    "eslint.nodePath": "/home/juanpa/Projects/soda/node_modules",
+    "eslint.workingDirectories": [
+        "/home/juanpa/Projects/soda"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.options": {
+        "configFile": "/home/juanpa/Projects/soda/package.json"
+    },
+}

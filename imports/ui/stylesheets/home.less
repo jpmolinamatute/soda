@@ -1,0 +1,121 @@
+html,
+body,
+div#app-home {
+    width: 100%;
+    height: 100%;
+}
+
+div#app-home {
+    display: flex;
+    flex-direction: row;
+}
+
+div#left-panel {
+    order: 1;
+    flex: 1 1 25%;
+    padding: 15px;
+    background-color: green;
+}
+
+div#right-panel {
+    order: 2;
+    flex: 1 1 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+div#right-panel div.right-top {
+    order: 1;
+    flex: 1 1 75%;
+    padding: 15px;
+    background-color: pink;
+}
+
+div#right-panel div.right-bottom {
+    order: 2;
+    flex: 1 1 25%;
+    padding: 15px;
+    background-color: lightgray;
+}
+
+div#add-student {
+    width: 500px;
+    background-color: gray;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    padding: 15px;
+}
+
+div#student-list {
+    height: 350px;
+    width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: white;
+    margin-top: -15px;
+}
+
+div#student-list ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+div#student-list ul button {
+    color: black;
+}
+
+.center {
+    text-align: center;
+}
+
+div#student-history {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    background-color: gray;
+    z-index: 100;
+    padding: 0 0 15px 15px;
+    width: 600px;
+}
+
+div#student-history td {
+    word-wrap: break-word
+}
+
+div#student-history td.charge {
+    width: 77px;
+}
+
+div#student-history tfoot td {
+    text-align: right;
+}
+
+div#student-history td.date {
+    width: 198px;
+}
+
+input#search-student {
+    width: 300px;
+}
+
+div#right-panel div.needs-validation {
+    margin-top: 30px;
+}
+
+div#left-panel>div.form-group {
+    margin-top: 15px;
+}
+
+button#item-date {
+    margin-top: 31px;
+}
+
+div#history-wrap {
+    padding-top: 15px;
+    margin-bottom: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
