@@ -2,6 +2,7 @@ import './home.html';
 import '../../components/addStudent/addStudent.js';
 import '../../components/history/history.js';
 import { Mongo } from 'meteor/mongo';
+import { filterDate } from '../../components/history/history.js';
 import { STUDENTS, HISTORY } from '../../../startup/both/index.js';
 
 const isGrade = /(^[0-9]{1,2}[a-d]$)|preparatorio|prekinder|maternal/;
@@ -44,7 +45,7 @@ Template.appHome.events({
         }
         event.stopPropagation();
     },
-    'blur div#right-panel input': (event) => {
+    'blur div#right-panel div.right-top input': (event) => {
         const value = event.currentTarget.value.trim();
         if (value.length > 0) {
             event.currentTarget.classList.remove('is-invalid');
@@ -115,6 +116,38 @@ Template.appHome.events({
             Blaze.remove(templateInstance.hasStudentHistory);
             templateInstance.hasStudentHistory = false;
         }
+        event.stopPropagation();
+    },
+    'click button#print-all-history': (event) => {
+        Meteor.call('allBalance', (error, list) => {
+            if (error) {
+                console.error(error);
+            } else {
+                const parent = document.querySelector('div#right-panel div.right-bottom');
+                const button = document.createElement('a');
+                const today = new Date();
+                const name = `Historial de estudiantes al ${filterDate(today)}.html`;
+                const blob = new Blob([list], {
+                    type: 'text/html',
+                    endings: 'native'
+                });
+                const url = window.URL.createObjectURL(blob);
+                // button.innerHTML = 'Descargar';
+                button.setAttribute('href', url);
+                button.style.backgroundColor = 'transparent';
+                button.setAttribute('download', name);
+                // button.classList.add('btn', 'btn-primary', 'btn-md');
+                // button.id = 'download-file';
+                parent.appendChild(button);
+                const evt = new MouseEvent('click', {
+                    bubbles: false,
+                    cancelable: false,
+                    view: window
+                });
+                button.dispatchEvent(evt);
+                button.parentNode.removeChild(button);
+            }
+        });
         event.stopPropagation();
     }
 });
@@ -193,7 +226,7 @@ Template.appHome.helpers({
                 balance += doc.charge;
             }
         });
-        return balance;
+        return new Intl.NumberFormat('es-CR', { localeMatcher: 'best fit', style: 'currency', currency: 'CRC' }).format(balance);
     },
     getToday
 });
@@ -208,10 +241,12 @@ Template.appHome.helpers({
 //         yearRange: [year - 1, year + 1]
 //     });
 // });
+
 Template.appHome.onCreated(function appHomeonCreated() {
     this.studentName = new ReactiveVar(false);
     this.studentID = new ReactiveVar(false);
     this.customDate = false;
+    this.allAtudentHistory = new ReactiveVar(false);
     this.hasStudentHistory = false;
     Meteor.subscribe('studentsList');
     Meteor.subscribe('balance');
