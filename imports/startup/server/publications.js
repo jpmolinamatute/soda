@@ -37,13 +37,13 @@ HISTORY.allow({
         check(doc.concept, NonEmptyString);
 
         return true;
-    } // ,
+    },
     // update(userId, doc) {
     //     return doc.owner === userId;
     // },
-    // remove(userId, doc) {
-    //     return doc.owner === userId;
-    // }
+    remove() {
+        return true;
+    }
 });
 
 Meteor.publish('studentsList', () => STUDENTS.find({}, { sort: { name: 1 } }));

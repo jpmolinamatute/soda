@@ -1,7 +1,7 @@
 import './history.html';
 import { HISTORY } from '../../../startup/both/index.js';
 
-export function filterDate(somedate) {
+export default function filterDate(somedate) {
     let str = false;
     if (somedate instanceof Date) {
         let day = somedate.getDate();
@@ -68,6 +68,19 @@ Template.history.helpers({
 
 Template.history.onCreated(function () {
     this.subscribe('history', this.data.studentID);
+});
+
+Template.history.events({
+    'click div#history-wrap table td button[data-type="edit"]': function clickHistory(event) {
+        console.log(this);
+
+        event.stopPropagation();
+    },
+    'click div#history-wrap table td button[data-type="delete"]': function clickHistory(event) {
+        const _id = this._id;
+        HISTORY.remove({ _id });
+        event.stopPropagation();
+    }
 });
 
 Template.history.onRendered(() => {

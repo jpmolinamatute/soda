@@ -2,7 +2,6 @@ import './home.html';
 import '../../components/addStudent/addStudent.js';
 import '../../components/history/history.js';
 import { Mongo } from 'meteor/mongo';
-import { filterDate } from '../../components/history/history.js';
 import { STUDENTS, HISTORY } from '../../../startup/both/index.js';
 
 const isGrade = /(^[0-9]{1,2}[a-d]$)|preparatorio|prekinder|maternal/;
@@ -161,9 +160,9 @@ Template.appHome.helpers({
 
             if (isGrade.test(name)) {
                 QUERY = {
-                    grade: new RegExp(name, 'i')
+                    grade: name.toUpperCase()
                 };
-            } else {
+            } else if (name.split(' ').length === 1) {
                 QUERY = {
                     $or: [
                         { name: { $regex: new RegExp(name) } },
@@ -172,6 +171,8 @@ Template.appHome.helpers({
                         { last2: { $regex: new RegExp(name) } }
                     ]
                 };
+            } else {
+                console.log('failed!');
             }
 
             list = STUDENTS.find(QUERY, { sort: { name: 1 } });
@@ -226,7 +227,8 @@ Template.appHome.helpers({
                 balance += doc.charge;
             }
         });
-        return new Intl.NumberFormat('es-CR', { localeMatcher: 'best fit', style: 'currency', currency: 'CRC' }).format(balance);
+        // return new Intl.NumberFormat('es-CR', { localeMatcher: 'best fit', style: 'currency', currency: 'CRC' }).format(balance);
+        return balance;
     },
     getToday
 });

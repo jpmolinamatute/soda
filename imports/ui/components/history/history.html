@@ -3,30 +3,42 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>&nbsp;</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Concepto</th>
                     <th scope="col">Gasto</th>
                     <th scope="col">Pago</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each history}}
                     <tr>
+                        <td>
+                            <button type="button" data-type="edit" class="btn btn-link btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
                         <td class="date">{{filterDate date}}</td>
                         <td>{{concept}}</td>
                         <td class="charge">{{filterCharge '+' charge}}</td>
                         <td class="charge">{{filterCharge '-' charge}}</td>
+                        <td>
+                            <button type="button" data-type="delete" class="btn btn-link btn-sm">
+                                <i class="far fa-times-circle"></i>
+                            </button>
+                        </td>
                     </tr>
                 {{else}}
                     <tr>
-                        <td colspan="4" class="center">Este estudiante no tiene historial</td>
+                        <td colspan="6" class="center">Este estudiante no tiene historial</td>
                     </tr>
                 {{/each}}
             </tbody>
             {{#if history}}
                 <tfoot>
                     <tr>
-                        <td colspan="4">{{total}}</td>
+                        <td colspan="6">{{total}}</td>
                     </tr>
                 </tfoot>
             {{/if}}

@@ -2,7 +2,9 @@
     {{> addStudent}}
     <div id="app-home">
         <div id="left-panel">
-            <button id="display-new-student" type="button" class="btn btn-primary btn-md">Nuevo</button>
+            <button id="display-new-student" type="button" class="btn btn-primary btn-md" title="Agregar estudiante Nuevo">
+                <i class="far fa-file"></i>
+            </button>
             <div class="form-group">
                 <label for="search-student">Buscar</label>
                 <input id="search-student" type="text" class="form-control">
@@ -48,7 +50,9 @@
                             {{{filter last2 'no'}}}
                         </h1>
                     {{/with}}
-                    <button id="display-student-history" type="button" class="btn btn-primary btn-md">Historial</button>
+                    <button id="display-student-history" type="button" class="btn btn-primary btn-md" title="Historial del Alumno">
+                        <i class="far fa-list-alt"></i>
+                    </button>
                     <div class="needs-validation" novalidate>
                         <div class="form-row">
                             <div class="form-group col-md-4">
@@ -75,14 +79,16 @@
                                     max="{{getToday}}">
                             </div>
                         </div>
-                        <button id="save-item" type="button" class="btn btn-primary btn-md">Guardar</button>
+                        <button id="save-item" type="button" class="btn btn-primary btn-md" title="Guardar Transaccion">
+                            <i class="far fa-save"></i>
+                        </button>
                     </div>
                 {{/if}}
             </div>
             <div class="right-bottom">
-                <p>Saldo de todos los estudiantes a la fecha es de {{saldo}} colones</p>
-                <button id="print-all-history" type="button" class="btn btn-primary btn-md">
-                    Descargar
+                <span>Saldo de todos los estudiantes a la fecha es de {{saldo}} colones</span>
+                <button id="print-all-history" type="button" class="btn btn-primary btn-md" title="Descargar historial de todos los estudiantes">
+                    <i class="fas fa-cloud-download-alt"></i>
                 </button>
             </div>
         </div>

@@ -14,7 +14,7 @@ div#left-panel {
     order: 1;
     flex: 1 1 25%;
     padding: 15px;
-    background-color: green;
+    background-color: #A9A9A9;
 }
 
 div#right-panel {
@@ -26,16 +26,26 @@ div#right-panel {
 
 div#right-panel div.right-top {
     order: 1;
-    flex: 1 1 75%;
+    flex: 1 1 90%;
     padding: 15px;
-    background-color: pink;
 }
 
 div#right-panel div.right-bottom {
     order: 2;
-    flex: 1 1 25%;
+    flex: 1 1 10%;
     padding: 15px;
-    background-color: lightgray;
+    position: relative;
+}
+
+div#right-panel div.right-bottom span {
+    position: absolute;
+    right: 75px;
+    top: 21px;
+}
+
+div#right-panel div.right-bottom button {
+    position: absolute;
+    right: 15px;
 }
 
 div#add-student {
@@ -49,8 +59,7 @@ div#add-student {
 }
 
 div#student-list {
-    height: 350px;
-    width: 300px;
+    max-height: 500px;
     overflow-x: hidden;
     overflow-y: auto;
     background-color: white;
@@ -97,12 +106,12 @@ div#student-history td.date {
     width: 198px;
 }
 
-input#search-student {
-    width: 300px;
-}
-
 div#right-panel div.needs-validation {
     margin-top: 30px;
+}
+
+div#right-panel h1 {
+    text-align: center;
 }
 
 div#left-panel>div.form-group {

@@ -4,5 +4,14 @@
 
 import { Mongo } from 'meteor/mongo';
 
-export const STUDENTS = new Mongo.Collection('students');
-export const HISTORY = new Mongo.Collection('history');
+const STUDENTS = new Mongo.Collection('students');
+
+let HISTORY;
+
+if (Meteor.isDevelopment) {
+    HISTORY = new Mongo.Collection('history-dev');
+} else if (Meteor.isProduction) {
+    HISTORY = new Mongo.Collection('history');
+}
+
+export { HISTORY, STUDENTS };
