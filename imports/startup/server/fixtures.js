@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { STUDENTS, HISTORY } from '../both/index.js';
 
+const MONTHS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 function allBalance() {
     let list = false;
     function getStudentBalance(studentID) {
@@ -65,44 +67,50 @@ function allBalance() {
         const balance = getStudentBalance(student._id);
         if (balance > 0) {
             if (!list) {
+                const when = new Date();
+                let dia = when.getDate();
+                let month = when.getMonth();
+                month = MONTHS[month];
+                dia = dia < 10 ? `0${dia}` : dia;
                 list = `<!doctype html>
-                    <html lang="es">
+                        <html lang="es">
                         <head>
-                            <meta charset="utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                            <meta charset="utf-8" />
+                            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-                            crossorigin="anonymous">
-                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                                crossorigin="anonymous"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                                crossorigin="anonymous"></script>
-                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-                                crossorigin="anonymous"></script>
+                             crossorigin="anonymous" />
 
-                            <title>Historial de transacciones</title>
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                                 crossorigin="anonymous"></script>
+
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                                 crossorigin="anonymous"></script>
+
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                                 crossorigin="anonymous"></script>
+
+                            <title>Historial de transacciones al</title>
+                            <style>
+                                span.tag {
+                                    font-weight: bold;
+                                }
+                                span.student {
+                                    text-transform: capitalize;
+                                }
+                                hr {
+                                    width: 100%;
+                                    border-top: 2px dashed black;
+                                    margin-left: 0;
+                                }
+                                tfoot td {
+                                    text-align: right;
+                                }
+                            </style>
                         </head>
-                        <style>
-                            span.tag {
-                                font-weight: bold;
-                            }
-                            span.student {
-                                text-transform: capitalize;
-                            }
-                            div#main {
-                                width: 700px;
-                                margin: 0 auto;
-                            }
-                            hr {
-                                width: 700px;
-                                border-top: 2px dashed black;
-                                margin-left: 0;
-                            }
-                            tfoot td {
-                                text-align: right;
-                            }
-                        </style>
+
                         <body>
-                            <div id="main">
+                            <div id="main" class="container">
+                            <h1> Historial de transacciones al ${dia}/${month}/${when.getFullYear()}</h1>
                     `;
             }
 
@@ -120,8 +128,8 @@ function allBalance() {
 
             const historial = getStudentHistory(student._id);
             list += `
-            <span class="tag">Estudiante: </span><span class="student">${fullName}</span><br>
-            <span class="tag">Grado: </span><span class="student">${student.grade}</span><br>
+            <span class="tag">Estudiante: </span><span class="student">${fullName}</span><br />
+            <span class="tag">Grado: </span><span class="student">${student.grade}</span><br />
             <table class="table table-striped">
             <thead>
                 <tr>
@@ -139,17 +147,24 @@ function allBalance() {
                 </tr>
             </tfoot>
         </table>
-        <hr>
+        <hr />
         `;
         }
     });
     if (typeof list === 'string') {
         list += `
+                
                 </div>
             </body>
         </html>
         `;
-        list = list.replace(/ {2,}|[\n\r]/g, '');
+
+        // <script>
+        //         window.onload = () => {
+        //             window.print();
+        //         };
+        //         </script>
+        list = list.replace(/ {2,}|[\n\r]/g, ' ');
     }
     return list;
 }

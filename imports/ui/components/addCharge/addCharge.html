@@ -1,0 +1,30 @@
+<template name="addCharge">
+    <div class="needs-validation" novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="datepicker">Fecha</label>
+                <input id="datepicker" type="date" class="form-control" required value="{{getToday}}" max="{{getToday}}">
+            </div>
+            <div class="col-md-1 top-padding">
+                <label class="form-check-label" for="type-charge">Gasto</label>
+                <input type="radio" id="type-charge" name="type" value="charge" checked>
+                <br>
+                <label class="form-check-label" for="type-pay">Pago</label>
+                <input type="radio" id="type-pay" name="type" value="pay">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="item-concept">Concepto</label>
+                <input id="item-concept" type="text" class="form-control" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="item-charge">Monto</label>
+                <input id="item-charge" type="number" class="form-control" min="0" required>
+            </div>
+            <div class="col-md-1">
+                <button id="save-item" type="button" class="btn btn-primary btn-md" title="Guardar Transaccion">
+                    <i class="far fa-save"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

@@ -5,124 +5,193 @@ import pymongo
 import re
 from bson import objectid
 
-# listImg = ("10A", "10B", "10C", "7A", "7B", "7C", "8A", "8B", "8C", "9A", "9B", "9C")
-listImg = ("1A", "1B", "2A", "2B", "2C", "3A", "3B", "3C", "4A", "4B", "4C", "5A", "5B", "5C", "6A", "6B", "6C")
-# listImg = ("7A", "7B")
+listImg = ("10A", "10B", "10C", "11A", "11B", "11C", "7B", "7C", "8A", "8B", "8C", "7A", "9A", "9B", "9C", "1A", "1B",
+           "1C", "2A", "2B", "3A", "3B", "3C", "4A", "4B", "4C", "5A", "5B", "5C", "6A", "6B", "6C", "KA", "KB", "PB",
+           "PC", "PKB")
 
-# myclient = pymongo.MongoClient("mongodb://soda:dev@134.41.203.87:57017/soda")
 myclient = pymongo.MongoClient("mongodb://soda:dev@naruto:57017/soda")
 mydb = myclient["soda"]
 mycol = mydb["students"]
 allStudents = []
-# pattern = re.compile('^[a-z ]+$', re.IGNORECASE)
-# noneOfThese = re.compile(
-#     'TOTAL|HOMBRES|MUJERES| *Colegio *Saint *Francis| *LISTA *DE *CLASE|PROFESORA *GUIA:*|/feb/', re.IGNORECASE)
-# for img in listImg:
-#     print(img + "this is image")
-#     listArray = pytesseract.image_to_string(Image.open("./list-png/" + img + ".png"), lang='eng')
-#     lines = listArray.splitlines()
-#     for l in lines:
-#         l = l.strip()
-#         l = re.sub(r"\d|\.|-|\[|`|\(|\)|_|‘|'|’", "", l)
-#         if len(l) > 2 and pattern.match(l) and not noneOfThese.match(l):
-#             names = l.lower().split()
-#             howmany = len(names)
-#             student = None
-#             if howmany == 2:
-#                 student = {
-#                     "_id": str(objectid.ObjectId()),
-#                     "grade": img,
-#                     "name": names[0],
-#                     "middle": names[1]
-#                 }
-#             elif howmany == 3:
-#                 student = {
-#                     "_id": str(objectid.ObjectId()),
-#                     "grade": img,
-#                     "name": names[0],
-#                     "middle": names[1],
-#                     "last1": names[2]
-#                 }
-#             elif howmany == 4:
-#                 student = {
-#                     "_id": str(objectid.ObjectId()),
-#                     "grade": img,
-#                     "name": names[0],
-#                     "middle": names[1],
-#                     "last1": names[2],
-#                     "last2": names[3]
-#                 }
-#             elif howmany > 4:
-#                 print('this student has to be added manually')
-#                 print(names, img)
+pattern = re.compile('^[a-záéíóúñ ]+$', re.IGNORECASE)
+noneOfThese = re.compile(
+    'TOTAL|HOMBRES|MUJERES| *Colegio *Saint *Francis| *LISTA *DE *CLASE|PROFESORA *GUIA:*| IDENTIFICACIÓN ', re.IGNORECASE)
+for img in listImg:
+    listArray = pytesseract.image_to_string(
+        Image.open("./list-png/" + img + ".png"), lang='spa')
+    lines = listArray.splitlines()
+    for l in lines:
+        l = l.strip()
+        l = re.sub(r"\d|\.|-|\[|`|\(|\)|_|‘|'|’", "", l)
+        if len(l) > 2 and pattern.match(l) and not noneOfThese.match(l):
+            names = l.lower().split()
+            howmany = len(names)
+            student = None
+            if howmany == 2:
+                student = {
+                    "_id": str(objectid.ObjectId()),
+                    "grade": img,
+                    "name": names[0],
+                    "middle": names[1]
+                }
+            elif howmany == 3:
+                student = {
+                    "_id": str(objectid.ObjectId()),
+                    "grade": img,
+                    "name": names[0],
+                    "middle": names[1],
+                    "last1": names[2]
+                }
+            elif howmany == 4:
+                student = {
+                    "_id": str(objectid.ObjectId()),
+                    "grade": img,
+                    "name": names[0],
+                    "middle": names[1],
+                    "last1": names[2],
+                    "last2": names[3]
+                }
+            elif howmany > 4:
+                print('this student has to be added manually')
+                print(names, img)
 
-#             if isinstance(student, dict):
-#                 allStudents.append(student)
+            if isinstance(student, dict):
+                allStudents.append(student)
 
-# allStudents.append({
-#     "_id": str(objectid.ObjectId()),
-#     "grade": "10A",
-#     "name": "lan huang",
-#     "middle": "jessica",
-#     "last1": "yeu",
-#     "last2": "huey"
-# })
-
-# allStudents.append({
-#     "_id": str(objectid.ObjectId()),
-#     "grade": "10A",
-#     "name": "vindas",
-#     "middle": "ferrer",
-#     "last1": "antonio",
-#     "last2": "de jesus"
-# })
-
-# allStudents.append({
-#     "_id": str(objectid.ObjectId()),
-#     "grade": "7B",
-#     "name": "villegas",
-#     "middle": "mata",
-#     "last1": "daniel"
-# })
-
-# allStudents.append({
-#     "_id": str(objectid.ObjectId()),
-#     "grade": "7C",
-#     "name": "alvarez",
-#     "middle": "rojas",
-#     "last1": "lucia",
-#     "last2": "de los angeles"
-# })
-
-# allStudents.append({
-#     "_id": str(objectid.ObjectId()),
-#     "grade": "8B",
-#     "name": "solano",
-#     "middle": "brenes",
-#     "last1": "sofia",
-#     "last2": "del carmen"
-# })
-
-# allStudents.append({
-#     "_id": str(objectid.ObjectId()),
-#     "grade": "9C",
-#     "name": "hernandez",
-#     "middle": "vega",
-#     "last1": "rebeca",
-#     "last2": "de guadalupe"
-# })
 
 allStudents.append({
     "_id": str(objectid.ObjectId()),
-    "grade": "9B",
+    "grade": "10A",
+    "name": "hernández",
+    "middle": "vega",
+    "last1": "rebeca",
+    "last2": "guadalupe"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "10C",
     "name": "cen",
     "middle": "wang",
     "last1": "xiao",
-    "last2": "wen (wendy)"
+    "last2": "vwen (wendy)"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "10C",
+    "name": "van der laat",
+    "middle": "gurdián",
+    "last1": "rodrigo"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "11A",
+    "name": "lan",
+    "middle": "huang",
+    "last1": "jéssica",
+    "last2": "yeu huey"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "11A",
+    "name": "vindas",
+    "middle": "ferrer",
+    "last1": "antonio",
+    "last2": "de jesús"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "7C",
+    "name": "benavides",
+    "middle": "garro",
+    "last1": "abigail",
+    "last2": "de los ángeles"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "8A",
+    "name": "álvarez",
+    "middle": "rojas",
+    "last1": "lucía",
+    "last2": "de los ángeles"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "3A",
+    "name": "álvarez",
+    "middle": "rojas",
+    "last1": "gloriana",
+    "last2": "de los ángeles"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "8C",
+    "name": "calderón",
+    "middle": "espinosa",
+    "last1": "de los monteros",
+    "last2": "ma. paula"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "9C",
+    "name": "solano",
+    "middle": "brenes",
+    "last1": "sofía",
+    "last2": "del carmen"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "3B",
+    "name": "hernández",
+    "middle": "hernández",
+    "last1": "gabriel",
+    "last2": "de jesús"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "4A",
+    "name": "pacheco",
+    "middle": "vega",
+    "last1": "elizabeth",
+    "last2": "de los ángeles"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "4A",
+    "name": "rodríguez",
+    "middle": "quintero",
+    "last1": "samara",
+    "last2": "de los ángeles"
+})
+
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "4B",
+    "name": "alvarado",
+    "middle": "alfaro",
+    "last1": "mariana",
+    "last2": "del carmen"
+})
+
+allStudents.append({
+    "_id": str(objectid.ObjectId()),
+    "grade": "4B",
+    "name": "alpízar",
+    "middle": "delgado",
+    "last1": "maría",
+    "last2": "del 'milagro"
 })
 
 mycol.insert_many(allStudents)
-# mycol.update_one({"grade": "10B", "middle": "samuels", "last1": "zuriann"}, {"$set": {"name": "muir"}})
-# mycol.update_one({"grade": "7A", "middle": "jimenez", "last1": "daniela"}, {"$set": {"name": "granados"}})
-# mycol.update_one({"grade": "7B", "name": "phillips", "middle": "mojica"}, {"$set": {"last1": "emma", "last2": "sofia"}})
-# mycol.delete_one({"grade": "7B", "name": "m", "middle": "uj", "last1": "eres"})

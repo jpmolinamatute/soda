@@ -5,6 +5,12 @@ div#app-home {
     height: 100%;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 div#app-home {
     display: flex;
     flex-direction: row;
@@ -28,6 +34,7 @@ div#right-panel div.right-top {
     order: 1;
     flex: 1 1 90%;
     padding: 15px;
+    position: relative;
 }
 
 div#right-panel div.right-bottom {
@@ -73,6 +80,33 @@ div#student-list ul {
 
 div#student-list ul button {
     color: black;
+    background-color: white;
+    width: 100%;
+    height: 30px;
+    border: none;
+    padding: 0;
+    position: relative;
+    display: block;
+}
+
+div#student-list ul button span.name {
+    position: absolute;
+    left: 5px;
+    top: 3px;
+}
+
+div#student-list ul button span.grade {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
+
+div#student-list li {
+    border: 1px white solid;
+}
+
+div#student-list li:hover {
+    border: 2px blue solid;
 }
 
 .center {
@@ -84,26 +118,32 @@ div#student-history {
     top: 0;
     right: 0;
     display: none;
-    background-color: gray;
+    background-color: grey;
     z-index: 100;
-    padding: 0 0 15px 15px;
-    width: 600px;
+    padding: 0;
+    width: 75%;
+    height: 50%;
+    flex-direction: column;
 }
 
-div#student-history td {
+div#history-wrap td {
     word-wrap: break-word
 }
 
-div#student-history td.charge {
-    width: 77px;
+div#history-wrap table .charge {
+    width: 100px;
 }
 
-div#student-history tfoot td {
-    text-align: right;
-}
-
-div#student-history td.date {
+div#history-wrap table .date {
     width: 198px;
+}
+
+div#history-wrap table .tdbutton {
+    width: 40px;
+}
+
+div#history-wrap tfoot td {
+    text-align: right;
 }
 
 div#right-panel div.needs-validation {
@@ -123,8 +163,45 @@ button#item-date {
 }
 
 div#history-wrap {
-    padding-top: 15px;
-    margin-bottom: 15px;
-    max-height: 400px;
+    order: 1;
+    flex: 1;
     overflow-y: auto;
+}
+
+div#student-history-controls {
+    order: 2;
+    height: 50px;
+    flex-basis: 50px;
+    position: relative;
+}
+
+div#student-history-controls button {
+    position: absolute;
+    top: 6px;
+}
+
+button#close-history {
+    right: 15px;
+}
+
+button#print-history {
+    right: 100px;
+}
+
+div.top-padding {
+    padding-top: 25px;
+}
+
+div.top-padding label,
+div.top-padding input {
+    margin-left: 5px;
+}
+
+button#save-item {
+    margin-top: 31px;
+}
+
+input#edit-item-charge {
+    padding-left: 0;
+    padding-right: 0;
 }

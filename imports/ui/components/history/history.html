@@ -3,31 +3,58 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>&nbsp;</th>
-                    <th scope="col">Fecha</th>
+                    <th class="tdbutton">&nbsp;</th>
+                    <th class="date" scope="col">Fecha</th>
                     <th scope="col">Concepto</th>
-                    <th scope="col">Gasto</th>
-                    <th scope="col">Pago</th>
-                    <th>&nbsp;</th>
+                    <th class="charge" scope="col">Gasto</th>
+                    <th class="charge" scope="col">Pago</th>
+                    <th class="tdbutton">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each history}}
-                    <tr>
-                        <td>
-                            <button type="button" data-type="edit" class="btn btn-link btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </td>
-                        <td class="date">{{filterDate date}}</td>
-                        <td>{{concept}}</td>
-                        <td class="charge">{{filterCharge '+' charge}}</td>
-                        <td class="charge">{{filterCharge '-' charge}}</td>
-                        <td>
-                            <button type="button" data-type="delete" class="btn btn-link btn-sm">
+                    <tr class="needs-validation" novalidate>
+                        <td class="tdbutton">
+                            <button type="button" data-type="delete" class="btn btn-default btn-sm">
                                 <i class="far fa-times-circle"></i>
                             </button>
                         </td>
+                        {{#if editMode}}
+                            <td>
+                                <input id="edit-datepicker" type="date" class="form-control" value="{{onlyDate date}}"
+                                    max="{{getToday}}" required>
+                            </td>
+                            <td>
+                                <input id="edit-item-concept" type="text" class="form-control" value="{{concept}}"
+                                    required>
+                            </td>
+                            <td>
+                                <label class="form-check-label" for="edit-type-charge">Gasto</label>
+                                <input type="radio" id="edit-type-charge" name="edit-type" value="charge" checked="{{isCharge charge}}">
+                                <br>
+                                <label class="form-check-label" for="edit-type-pay">Pago</label>
+                                <input type="radio" id="edit-type-pay" name="edit-type" value="pay" checked="{{isPay charge}}">
+                            </td>
+                            <td>
+                                <input id="edit-item-charge" type="number" class="form-control" value="{{charge}}" min="0"
+                                    required>
+                            </td>
+                            <td class="tdbutton">
+                                <button type="button" data-type="save" class="btn btn-default btn-sm">
+                                    <i class="far fa-save"></i>
+                                </button>
+                            </td>
+                        {{else}}
+                            <td class="date">{{filterDate date}}</td>
+                            <td>{{concept}}</td>
+                            <td class="charge">{{filterCharge '+' charge}}</td>
+                            <td class="charge">{{filterCharge '-' charge}}</td>
+                            <td class="tdbutton">
+                                <button type="button" data-type="edit" class="btn btn-default btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        {{/if}}
                     </tr>
                 {{else}}
                     <tr>

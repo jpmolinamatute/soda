@@ -1,20 +1,12 @@
 import './home.html';
 import '../../components/addStudent/addStudent.js';
-import '../../components/history/history.js';
+import '../../components/addCharge/addCharge.js';
 import { Mongo } from 'meteor/mongo';
+
 import { STUDENTS, HISTORY } from '../../../startup/both/index.js';
 
 const isGrade = /(^[0-9]{1,2}[a-d]$)|preparatorio|prekinder|maternal/;
 
-function getToday() {
-    const todayDate = new Date();
-    let day = todayDate.getDate();
-    let month = todayDate.getMonth() + 1;
-    const year = todayDate.getFullYear();
-    day = day < 10 ? `0${day}` : day;
-    month = month < 10 ? `0${month}` : month;
-    return `${year}-${month}-${day}`;
-}
 
 Template.appHome.events({
     'click button#display-new-student': (event) => {
@@ -40,73 +32,8 @@ Template.appHome.events({
         }
         if (typeof studentID === 'string') {
             templateInstance.hasStudentHistory = Blaze.renderWithData(Template.history, { studentID },
-                document.getElementById('student-history'), document.getElementById('print-history'));
+                document.getElementById('student-history'), document.getElementById('student-history-controls'));
         }
-        event.stopPropagation();
-    },
-    'blur div#right-panel div.right-top input': (event) => {
-        const value = event.currentTarget.value.trim();
-        if (value.length > 0) {
-            event.currentTarget.classList.remove('is-invalid');
-        } else {
-            event.currentTarget.classList.add('is-invalid');
-        }
-    },
-    'click button#save-item': (event, templateInstance) => {
-        const form = event.currentTarget.closest('div.needs-validation');
-        const concept = document.getElementById('item-concept');
-        const charge = document.getElementById('item-charge');
-        const radios = document.getElementsByName('type');
-        const inputDate = document.getElementById('datepicker');
-
-
-        let type = '';
-        radios.forEach((r) => {
-            if (r.checked) {
-                type = r.value;
-            }
-        });
-        if (concept.value.length > 0
-            && charge.value.length > 0
-            && charge.value !== '0'
-            && type.length > 0) {
-            const studentID = templateInstance.studentID.get();
-            let date = new Date();
-            const arrayDate = inputDate.value.split('-');
-            const inputDay = parseInt(arrayDate[2], 10);
-            const inputMonth = parseInt(arrayDate[1], 10);
-            const inputYear = parseInt(arrayDate[0], 10);
-            if (inputYear !== date.getFullYear()
-                || inputMonth !== date.getMonth() + 1
-                || inputDay !== date.getDate()) {
-                date = new Date(inputYear, inputMonth - 1, inputDay, 0, 0, 0, 0);
-            }
-
-            let chargenum = parseInt(charge.value, 10);
-
-            if (type === 'pay') {
-                chargenum *= -1;
-            }
-
-            HISTORY.insert({
-                studentID,
-                date,
-                charge: chargenum,
-                concept: concept.value
-            });
-
-            charge.value = '';
-            concept.value = '';
-            inputDate.value = getToday();
-            radios.forEach((r) => {
-                r.checked = false;
-            });
-            form.classList.remove('was-validated');
-        } else {
-            form.classList.add('was-validated');
-        }
-
-
         event.stopPropagation();
     },
     'click button#close-history': (event, templateInstance) => {
@@ -118,33 +45,17 @@ Template.appHome.events({
         event.stopPropagation();
     },
     'click button#print-all-history': (event) => {
-        Meteor.call('allBalance', (error, list) => {
+        Meteor.call('allBalance', (error, htmlString) => {
             if (error) {
                 console.error(error);
-            } else {
-                const parent = document.querySelector('div#right-panel div.right-bottom');
-                const button = document.createElement('a');
-                const today = new Date();
-                const name = `Historial de estudiantes al ${filterDate(today)}.html`;
-                const blob = new Blob([list], {
-                    type: 'text/html',
-                    endings: 'native'
-                });
-                const url = window.URL.createObjectURL(blob);
-                // button.innerHTML = 'Descargar';
-                button.setAttribute('href', url);
-                button.style.backgroundColor = 'transparent';
-                button.setAttribute('download', name);
-                // button.classList.add('btn', 'btn-primary', 'btn-md');
-                // button.id = 'download-file';
-                parent.appendChild(button);
-                const evt = new MouseEvent('click', {
-                    bubbles: false,
-                    cancelable: false,
-                    view: window
-                });
-                button.dispatchEvent(evt);
-                button.parentNode.removeChild(button);
+            } else if (typeof htmlString === 'string') {
+                const w = window.outerWidth;
+                const h = window.outerHeight;
+                const mywindow = window.open('', 'Print', `width=${w},height=${h}`, false);
+                mywindow.document.write(htmlString);
+                mywindow.document.close();
+                mywindow.focus();
+                mywindow.print();
             }
         });
         event.stopPropagation();
@@ -162,7 +73,7 @@ Template.appHome.helpers({
                 QUERY = {
                     grade: name.toUpperCase()
                 };
-            } else if (name.split(' ').length === 1) {
+            } else {
                 QUERY = {
                     $or: [
                         { name: { $regex: new RegExp(name) } },
@@ -171,8 +82,6 @@ Template.appHome.helpers({
                         { last2: { $regex: new RegExp(name) } }
                     ]
                 };
-            } else {
-                console.log('failed!');
             }
 
             list = STUDENTS.find(QUERY, { sort: { name: 1 } });
@@ -217,6 +126,9 @@ Template.appHome.helpers({
         const _id = Template.instance().studentID.get();
         return STUDENTS.findOne({ _id });
     },
+    studentID() {
+        return Template.instance().studentID.get();
+    },
     displayStudent() {
         return typeof Template.instance().studentID.get() === 'string';
     },
@@ -227,28 +139,22 @@ Template.appHome.helpers({
                 balance += doc.charge;
             }
         });
-        // return new Intl.NumberFormat('es-CR', { localeMatcher: 'best fit', style: 'currency', currency: 'CRC' }).format(balance);
+        // return new Intl.NumberFormat('es-CR', { localeMatcher: 'best fit', style: 'currency', currency: 'CRC' })
+        // .format(balance);
         return balance;
     },
-    getToday
+    htmlString() {
+        return Template.instance().htmlString.get();
+    }
 });
 
-// Template.appHome.onRendered(function () {
-//     console.log(this.find('input#datepicker'));
-//     const picker = new Pikaday({
-//         field: this.find('input#datepicker') // ,
-//         firstDay: 1,
-//         minDate: new Date(year, 0, 1),
-//         maxDate: new Date(year, 12, 31),
-//         yearRange: [year - 1, year + 1]
-//     });
-// });
+Template.appHome.onRendered(function () {
+    this.find('input#search-student').focus();
+});
 
 Template.appHome.onCreated(function appHomeonCreated() {
     this.studentName = new ReactiveVar(false);
     this.studentID = new ReactiveVar(false);
-    this.customDate = false;
-    this.allAtudentHistory = new ReactiveVar(false);
     this.hasStudentHistory = false;
     Meteor.subscribe('studentsList');
     Meteor.subscribe('balance');

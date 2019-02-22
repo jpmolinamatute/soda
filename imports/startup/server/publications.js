@@ -38,11 +38,11 @@ HISTORY.allow({
 
         return true;
     },
-    // update(userId, doc) {
-    //     return doc.owner === userId;
-    // },
-    remove() {
-        return true;
+    update(userId, doc) {
+        return typeof doc._id === 'string';
+    },
+    remove(userId, doc) {
+        return typeof doc._id === 'string';
     }
 });
 
