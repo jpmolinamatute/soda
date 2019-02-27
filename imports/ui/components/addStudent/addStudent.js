@@ -35,9 +35,7 @@ Template.addStudent.events({
         const grade = document.getElementById('student-grade').value;
         const fieldset = event.currentTarget.closest('div.needs-validation');
         if (name.length > 0
-            && middle.length > 0
             && last1.length > 0
-            && last2.length > 0
             && grade.length > 0) {
             const wasFound = STUDENTS.findOne({
                 name,

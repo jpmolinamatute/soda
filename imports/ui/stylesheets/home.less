@@ -21,6 +21,13 @@ div#left-panel {
     flex: 1 1 25%;
     padding: 15px;
     background-color: #A9A9A9;
+    display: flex;
+    flex-direction: column;
+}
+
+div#left-panel>div:first-child {
+    order: 1;
+    flex: 0 0 125px;
 }
 
 div#right-panel {
@@ -32,50 +39,42 @@ div#right-panel {
 
 div#right-panel div.right-top {
     order: 1;
-    flex: 1 1 90%;
+    flex: 1 1 auto;
     padding: 15px;
     position: relative;
 }
 
 div#right-panel div.right-bottom {
     order: 2;
-    flex: 1 1 10%;
+    flex: 0 0 40px;
     padding: 15px;
     position: relative;
 }
 
-div#right-panel div.right-bottom span {
-    position: absolute;
-    right: 75px;
-    top: 21px;
-}
-
-div#right-panel div.right-bottom button {
-    position: absolute;
-    right: 15px;
-}
-
 div#add-student {
-    width: 500px;
-    background-color: gray;
+    width: 25%;
+    background-color: #A9A9A9;
     position: absolute;
     top: 0;
     left: 0;
     display: none;
     padding: 15px;
+    z-index: 100;
 }
 
 div#student-list {
-    max-height: 500px;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: white;
+    background-color: transparent;
     margin-top: -15px;
+    order: 2;
+    flex: 1 1 auto;
 }
 
 div#student-list ul {
     list-style: none;
     padding-left: 0;
+    background-color: white;
 }
 
 div#student-list ul button {
@@ -83,7 +82,7 @@ div#student-list ul button {
     background-color: white;
     width: 100%;
     height: 30px;
-    border: none;
+    border: 2px white solid;
     padding: 0;
     position: relative;
     display: block;
@@ -101,11 +100,8 @@ div#student-list ul button span.grade {
     top: 3px;
 }
 
-div#student-list li {
-    border: 1px white solid;
-}
-
-div#student-list li:hover {
+div#student-list button:hover,
+div#student-list button.active {
     border: 2px blue solid;
 }
 
@@ -118,12 +114,13 @@ div#student-history {
     top: 0;
     right: 0;
     display: none;
-    background-color: grey;
+    background-color: #fff;
     z-index: 100;
     padding: 0;
     width: 75%;
     height: 50%;
     flex-direction: column;
+    border: 2px solid #000;
 }
 
 div#history-wrap td {
@@ -152,10 +149,6 @@ div#right-panel div.needs-validation {
 
 div#right-panel h1 {
     text-align: center;
-}
-
-div#left-panel>div.form-group {
-    margin-top: 15px;
 }
 
 button#item-date {

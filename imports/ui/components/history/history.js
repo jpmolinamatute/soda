@@ -1,41 +1,6 @@
 import './history.html';
-import { HISTORY } from '../../../startup/both/index.js';
+import { HISTORY, filterDate } from '../../../startup/both/index.js';
 import { getToday } from '../addCharge/addCharge.js';
-
-export default function filterDate(somedate) {
-    let str = false;
-    if (somedate instanceof Date) {
-        let day = somedate.getDate();
-        let month = somedate.getMonth() + 1;
-        const year = somedate.getFullYear();
-        let hour = somedate.getHours();
-        let min = somedate.getMinutes();
-        const sec = somedate.getSeconds();
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        let defaultTime = true;
-        if (hour === 0 && min === 0 && sec === 0) {
-            defaultTime = false;
-        }
-        day = day < 10 ? `0${day}` : day;
-        month = month < 10 ? `0${month}` : month;
-        min = min < 10 ? `0${min}` : min;
-
-        if (hour > 12) {
-            hour -= 12;
-        } else if (hour === 0) {
-            hour = 12;
-        } else if (hour < 10) {
-            hour = `0${hour}`;
-        }
-        if (defaultTime) {
-            str = `${day}/${month}/${year}  ${hour}:${min} ${ampm}`;
-        } else {
-            str = `${day}/${month}/${year}`;
-        }
-    }
-
-    return str;
-}
 
 function onlyDate(somedate) {
     return getToday(somedate);
@@ -98,7 +63,7 @@ Template.history.helpers({
     filterCharge(sign, charge) {
         let label = ' - ';
         if ((charge > 0 && sign === '+') || (charge < 0 && sign === '-')) {
-            label = charge;
+            label = charge.toLocaleString();
         }
         return label;
     },

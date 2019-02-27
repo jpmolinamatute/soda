@@ -2,3 +2,4 @@
 
 import './fixtures.js';
 import './publications.js';
+import './init.js';

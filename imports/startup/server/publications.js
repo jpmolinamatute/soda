@@ -14,9 +14,9 @@ STUDENTS.allow({
             return isGrade.test(x);
         });
         check(doc.name, NonEmptyString);
-        check(doc.middle, NonEmptyString);
+        check(doc.middle, Match.Optional(String));
         check(doc.last1, NonEmptyString);
-        check(doc.last2, NonEmptyString);
+        check(doc.last2, Match.Optional(String));
         check(doc.grade, validGrade);
 
         return true;
@@ -32,7 +32,7 @@ STUDENTS.allow({
 HISTORY.allow({
     insert(id, doc) {
         check(doc.studentID, NonEmptyString);
-        check(doc.date, Match.Any);
+        check(doc.date, Date);
         check(doc.charge, Number);
         check(doc.concept, NonEmptyString);
 

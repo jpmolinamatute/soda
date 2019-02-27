@@ -2,21 +2,23 @@
     {{> addStudent}}
     <div id="app-home">
         <div id="left-panel">
-            <button id="display-new-student" type="button" class="btn btn-primary btn-md"
-                title="Agregar estudiante Nuevo">
-                <i class="far fa-file"></i>
-            </button>
-            <div class="form-group">
-                <label for="search-student">Buscar</label>
-                <input id="search-student" type="text" class="form-control" tabindex="1">
+            <div>
+                <button id="display-new-student" type="button" class="btn btn-primary btn-md"
+                    title="Agregar estudiante Nuevo">
+                    <i class="far fa-file"></i>
+                </button>
+                <div class="form-group">
+                    <label for="search-student">Buscar</label>
+                    <input id="search-student" type="text" class="form-control" tabindex="1">
+                </div>
             </div>
-
-            {{#if hasStudent students}}
-                <div id="student-list">
+            <div id="student-list">
+                {{#if students}}
                     <ul>
                         {{#each students}}
                             <li>
-                                <button type="button" data-id="{{_id}}" data-type="student">
+                                <button type="button" data-id="{{_id}}" data-type="student" data-index="{{@index}}"
+                                    class="{{#if isActive @index}}active{{/if}}">
                                     <span class="name">
                                         {{{filter name 'yes'}}}
                                         {{{filter middle 'yes'}}}
@@ -28,15 +30,12 @@
                             </li>
                         {{/each}}
                     </ul>
-                </div>
-            {{else}}
-                {{#if studentName}}
-                    <div id="student-list">
+                {{else}}
+                    {{#if studentName}}
                         <p class="text-danger">No existe ningun estudiante con este criterio {{studentName}}</p>
-                    </div>
+                    {{/if}}
                 {{/if}}
-            {{/if}}
-
+            </div>
         </div>
         <div id="right-panel">
             <div class="right-top">
@@ -57,7 +56,20 @@
                 {{/if}}
             </div>
             <div class="right-bottom">
-                <span>Saldo de todos los estudiantes a la fecha es de {{saldo}} colones</span>
+                <p>Saldo de todos los estudiantes a la fecha es de {{saldo}} colones</p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="report-type" id="student-report" value="students"
+                        checked>
+                    <label class="form-check-label" for="student-report">
+                        Por Estudiante
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="report-type" id="grade-report" value="grades">
+                    <label class="form-check-label" for="grade-report">
+                        Por Grado
+                    </label>
+                </div>
                 <button id="print-all-history" type="button" class="btn btn-primary btn-md"
                     title="Descargar historial de todos los estudiantes">
                     <i class="fas fa-cloud-download-alt"></i>
