@@ -61,7 +61,7 @@ function getTotalBalance(query) {
             balance += doc.charge;
         }
     });
-    return balance.toLocaleString();
+    return balance !== 0 ? balance.toLocaleString() : false;
 }
 
 function getHTMLHeaderFooter(stringDate, queryType) {
@@ -100,7 +100,7 @@ function getHTMLHeaderFooter(stringDate, queryType) {
                         tfoot td,
                         table tr td:last-child,
                         table tr th:last-child {
-                            text
+                            text-align: right;
                         }
                     </style>
                 </head>
@@ -130,7 +130,7 @@ function allBalance(stringDate, queryType) {
     function balanceByStudent(student) {
         const query = { studentID: student._id };
         const balance = getTotalBalance(query);
-        if (balance > 0) {
+        if (balance) {
             let fullName = student.name;
 
             if (typeof student.middle === 'string') {
@@ -167,6 +167,11 @@ function allBalance(stringDate, queryType) {
         <hr>
         `;
         }
+        // else {
+        //     console.log(balance);
+        //     console.log(student.name);
+        //     console.log('-------------------------------------------');
+        // }
     }
 
 
@@ -177,7 +182,7 @@ function allBalance(stringDate, queryType) {
         });
         const balance = getTotalBalance(query);
 
-        if (balance > 0) {
+        if (balance) {
             const historial = getSubHistory(query, { fields: { _id: 0, studentID: 0 }, sort: { grade: 1, date: 1 } });
             list += `
             <span class="tag">Grado: </span><span class="student">${grade}</span><br>

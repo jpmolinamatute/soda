@@ -1,4 +1,5 @@
 import './home.html';
+import '../../components/StudentHeader/StudentHeader.js';
 import '../../components/addStudent/addStudent.js';
 import '../../components/addCharge/addCharge.js';
 import '../../components/history/history.js';
@@ -151,10 +152,6 @@ Template.appHome.helpers({
             }
         }
         return filteredTXT;
-    },
-    oneStudent() {
-        const _id = Template.instance().studentID.get();
-        return STUDENTS.findOne({ _id });
     },
     studentID() {
         return Template.instance().studentID.get();

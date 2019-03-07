@@ -1,5 +1,5 @@
 import './history.html';
-import { HISTORY, filterDate } from '../../../startup/both/index.js';
+import { HISTORY, filterDate, STUDENTS } from '../../../startup/both/index.js';
 import { getToday } from '../addCharge/addCharge.js';
 
 function onlyDate(somedate) {
@@ -50,9 +50,13 @@ function saveCharge(event, _id) {
     }
 }
 Template.history.helpers({
-    history() {
+    history(total) {
         const studentID = this.studentID;
-        return HISTORY.find({ studentID }, { sort: { date: 1 } });
+        let cursor = false;
+        if (total !== 0) {
+            cursor = HISTORY.find({ studentID }, { sort: { date: 1 } });
+        }
+        return cursor;
     },
     isCharge(charge) {
         return charge > 0;
@@ -73,12 +77,17 @@ Template.history.helpers({
         HISTORY.find({ studentID }, { fields: { charge: 1 } }).forEach((doc) => {
             result += doc.charge;
         });
-        if (result > 0) {
-            result = `Debe ${result} Colones`;
-        } else if (result < 0) {
-            result = `Tiene un saldo a su favor de  ${result * -1} Colones`;
+        return result;
+    },
+    totalString(total) {
+        let result;
+
+        if (total > 0) {
+            result = `Debe ${total.toLocaleString()} Colones`;
+        } else if (total < 0) {
+            result = `Tiene un saldo a su favor de  ${(total * -1).toLocaleString()} Colones`;
         } else {
-            result = 'tiene un balance en 0';
+            result = 'Tiene un balance en 0';
         }
         return result;
     },
@@ -87,7 +96,7 @@ Template.history.helpers({
     onlyDate
 });
 
-Template.history.onCreated(function () {
+Template.history.onCreated(function historyonCreated() {
     this.subscribe('history', this.data.studentID);
 });
 
@@ -111,5 +120,5 @@ Template.history.events({
 });
 
 Template.history.onRendered(() => {
-    document.getElementById('student-history').style.display = 'flex';
+    document.getElementById('student-history').style.display = 'block';
 });

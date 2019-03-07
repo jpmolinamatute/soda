@@ -40,14 +40,7 @@
         <div id="right-panel">
             <div class="right-top">
                 {{#if displayStudent}}
-                    {{#with oneStudent}}
-                        <h1>
-                            {{{filter name 'no'}}}
-                            {{{filter middle 'no'}}}
-                            {{{filter last1 'no'}}}
-                            {{{filter last2 'no'}}}
-                        </h1>
-                    {{/with}}
+                    {{> studentheader studentID=studentID}}
                     <button id="display-student-history" type="button" class="btn btn-primary btn-md"
                         title="Historial del Alumno">
                         <i class="far fa-list-alt"></i>

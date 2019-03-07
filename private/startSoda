@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+METEORDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+SRCDIR="$(cd "$METEORDIR" && cd .. && pwd)"
+bundle="${SRCDIR}/bundle"
+
+npmrc="${bundle}/programs/server/.npmrc"
+export PATH="/home/juanpa/Projects/nodejs/bin:${PATH}"
+
+cd "$METEORDIR" || exit 2
+
+echo "Stopping soda"
+sudo systemctl stop soda.service
+if [[ -d $bundle ]]; then
+    rm -rf "$bundle"
+fi
+
+if ! meteor build --directory "$SRCDIR"; then
+    echo "Meteor build failed" >&2
+    exit 2
+fi
+
+cd "${bundle}/programs/server" || exit 2
+echo "python=/usr/bin/python2.7" >"$npmrc"
+if ! npm install; then
+    echo "Error: 'npm install' failed" >&2
+    exit 2
+fi
+
+echo "Starting soda"
+sudo systemctl start soda.service
+echo "Bye!"
+exit 0
