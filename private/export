@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+BACKUPDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)/backups"
+historyjson="$BACKUPDIR/history.json"
+studentjson="$BACKUPDIR/students.json"
+
+if [[ -f $historyjson ]]; then
+    echo "Removing old $historyjson"
+    rm "$historyjson"
+fi
+
+if [[ -f $studentjson ]]; then
+    echo "Removing old $studentjson"
+    rm "$studentjson"
+fi
+
+echo "Exporting $studentjson"
+mongoexport --uri=mongodb://soda:dev@naruto:57017/soda -c students -o "$studentjson" --jsonArray --pretty
+echo "Exporting $historyjson"
+mongoexport --uri=mongodb://soda:dev@naruto:57017/soda -c history -o "$historyjson" --jsonArray --pretty

@@ -1,4 +1,14 @@
 [{
+	"_id": "25D8s2ALF5n8sfNLQ",
+	"studentID": "5c68a860fabb085528b6bfd2",
+	"date": {
+		"$date": "2019-03-06T21:16:52.491Z"
+	},
+	"charge": 1300,
+	"concept": "cremoleta jugazo",
+	"editMode": false
+},
+{
 	"_id": "2BKw2KaGWmFHZ8D9j",
 	"studentID": "5c68a89efabb085528b6c1c9",
 	"date": {
@@ -9,12 +19,32 @@
 	"editMode": false
 },
 {
+	"_id": "2EWj4KZ5cRRAZzJTj",
+	"studentID": "5c68a875fabb085528b6c0bf",
+	"date": {
+		"$date": "2019-03-05T22:50:36.395Z"
+	},
+	"charge": 600,
+	"concept": "Te 2 pinos",
+	"editMode": false
+},
+{
 	"_id": "2MB7jAptoL3RoJCYZ",
 	"studentID": "5c68a864fabb085528b6bffc",
 	"date": {
 		"$date": "2019-02-27T23:54:43.646Z"
 	},
 	"charge": -400,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "2YMq2PvX392BRcGgz",
+	"studentID": "5c68a8acfabb085528b6c248",
+	"date": {
+		"$date": "2019-03-06T16:00:38.744Z"
+	},
+	"charge": 200,
 	"concept": "pago",
 	"editMode": false
 },
@@ -29,6 +59,16 @@
 	"editMode": false
 },
 {
+	"_id": "2vqkBSuukmJt2L8bk",
+	"studentID": "5c68a860fabb085528b6bfd4",
+	"date": {
+		"$date": "2019-03-07T18:35:34.857Z"
+	},
+	"charge": 300,
+	"concept": "pinoleta",
+	"editMode": false
+},
+{
 	"_id": "33igBrCoKs8rCBbQn",
 	"studentID": "5c68a86bfabb085528b6c052",
 	"date": {
@@ -36,6 +76,16 @@
 	},
 	"charge": 700,
 	"concept": "Mani",
+	"editMode": false
+},
+{
+	"_id": "3LLcByncucmvJdxYm",
+	"studentID": "5c68a897fabb085528b6c1b1",
+	"date": {
+		"$date": "2019-03-07T18:22:53.708Z"
+	},
+	"charge": 300,
+	"concept": "pinoleta",
 	"editMode": false
 },
 {
@@ -56,6 +106,16 @@
 	},
 	"charge": 600,
 	"concept": "Hic",
+	"editMode": false
+},
+{
+	"_id": "3hM66mZ9GfrkYCTgT",
+	"studentID": "5c68a85efabb085528b6bfbd",
+	"date": {
+		"$date": "2019-03-07T18:16:05.673Z"
+	},
+	"charge": -7600,
+	"concept": "pago",
 	"editMode": false
 },
 {
@@ -139,6 +199,16 @@
 	"editMode": false
 },
 {
+	"_id": "4aHjuTWvNwWoPQg6J",
+	"studentID": "5c68a860fabb085528b6bfe0",
+	"date": {
+		"$date": "2019-03-07T18:34:49.431Z"
+	},
+	"charge": 1200,
+	"concept": "Britt",
+	"editMode": false
+},
+{
 	"_id": "4f5arnW2udZm59We7",
 	"studentID": "5c68a862fabb085528b6bfe9",
 	"date": {
@@ -216,6 +286,16 @@
 	},
 	"charge": 2000,
 	"concept": "Aloe tequeño",
+	"editMode": false
+},
+{
+	"_id": "69DRTGP6T2kongRnX",
+	"studentID": "5c68a897fabb085528b6c1ac",
+	"date": {
+		"$date": "2019-03-06T20:38:33.503Z"
+	},
+	"charge": -1400,
+	"concept": "pago",
 	"editMode": false
 },
 {
@@ -342,7 +422,7 @@
 	"_id": "95yZeBuvqQEnnXmPG",
 	"studentID": "5c68a8a3fabb085528b6c1f9",
 	"date": {
-		"$date": "2019-02-23T22:41:55.935Z"
+		"$date": "2019-02-23T06:00:00.000Z"
 	},
 	"charge": 1800,
 	"concept": "power 2 Toreadito",
@@ -356,6 +436,16 @@
 	},
 	"charge": 400,
 	"concept": "Saldo ",
+	"editMode": false
+},
+{
+	"_id": "9QWqeBoQ4Es7oANLG",
+	"studentID": "5c68a88bfabb085528b6c151",
+	"date": {
+		"$date": "2019-03-07T22:39:06.914Z"
+	},
+	"charge": 1500,
+	"concept": "pringles, Hic Fusión",
 	"editMode": false
 },
 {
@@ -439,6 +529,26 @@
 	"editMode": false
 },
 {
+	"_id": "BWKZg88GPCdx7eSTr",
+	"studentID": "5c68a86bfabb085528b6c052",
+	"date": {
+		"$date": "2019-03-05T22:49:40.998Z"
+	},
+	"charge": -700,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "BnwDAXvoj5rnnPdoK",
+	"studentID": "5c68a86bfabb085528b6c047",
+	"date": {
+		"$date": "2019-03-05T22:49:16.284Z"
+	},
+	"charge": 1700,
+	"concept": "Reposteria 2 marsmellow",
+	"editMode": false
+},
+{
 	"_id": "BquYvisHNgJpSwDY4",
 	"studentID": "5c68a875fabb085528b6c0bd",
 	"date": {
@@ -446,6 +556,16 @@
 	},
 	"charge": 800,
 	"concept": "Paty",
+	"editMode": false
+},
+{
+	"_id": "C6aJ2cMYLWSFuaNJN",
+	"studentID": "5c68a878fabb085528b6c0db",
+	"date": {
+		"$date": "2019-03-06T21:39:11.307Z"
+	},
+	"charge": -1000,
+	"concept": "pago",
 	"editMode": false
 },
 {
@@ -479,6 +599,16 @@
 	"editMode": false
 },
 {
+	"_id": "D8W2cCzCw4t785mEC",
+	"studentID": "5c68a862fabb085528b6bfeb",
+	"date": {
+		"$date": "2019-03-06T16:02:32.866Z"
+	},
+	"charge": -1000,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "DFKwXTJkmsiBxHnDW",
 	"studentID": "5c68a8acfabb085528b6c248",
 	"date": {
@@ -502,9 +632,9 @@
 	"_id": "DZT6QTtxCi92srkbi",
 	"studentID": "5c68a8a3fabb085528b6c1f9",
 	"date": {
-		"$date": "2019-02-23T22:44:05.349Z"
+		"$date": "2019-02-23T06:00:00.000Z"
 	},
-	"charge": -3400,
+	"charge": -2900,
 	"concept": "pago",
 	"editMode": false
 },
@@ -539,6 +669,16 @@
 	"editMode": false
 },
 {
+	"_id": "EMphFm5QAQM6XLCaY",
+	"studentID": "5c68a875fabb085528b6c0bf",
+	"date": {
+		"$date": "2019-03-05T23:03:10.002Z"
+	},
+	"charge": -600,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "F7DxGqk4YJBABmzWb",
 	"studentID": "5c68a873fabb085528b6c09d",
 	"date": {
@@ -546,6 +686,16 @@
 	},
 	"charge": 800,
 	"concept": "push pop",
+	"editMode": false
+},
+{
+	"_id": "FFYWT9z7HBth6nsyB",
+	"studentID": "5c68a8a3fabb085528b6c1f9",
+	"date": {
+		"$date": "2019-03-06T22:37:17.851Z"
+	},
+	"charge": 1400,
+	"concept": "paleta",
 	"editMode": false
 },
 {
@@ -649,6 +799,26 @@
 	"editMode": false
 },
 {
+	"_id": "HwCL9wTvJhpa9ZxbE",
+	"studentID": "5c68a8a3fabb085528b6c1f9",
+	"date": {
+		"$date": "2019-03-06T22:37:23.830Z"
+	},
+	"charge": 600,
+	"concept": "agua",
+	"editMode": false
+},
+{
+	"_id": "J4qmLXYES4YMLnvGX",
+	"studentID": "5c68a869fabb085528b6c035",
+	"date": {
+		"$date": "2019-03-05T23:03:25.574Z"
+	},
+	"charge": -1400,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "K2xAveBpxyzYgxzdw",
 	"studentID": "5c68a89efabb085528b6c1c9",
 	"date": {
@@ -686,6 +856,26 @@
 	},
 	"charge": -400,
 	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "KwaXS4XWvZ8gCJnsv",
+	"studentID": "5c68a862fabb085528b6bff4",
+	"date": {
+		"$date": "2019-03-05T23:04:28.474Z"
+	},
+	"charge": 200,
+	"concept": "saldo",
+	"editMode": false
+},
+{
+	"_id": "L9zBzjSHv5oMgZ8dQ",
+	"studentID": "5c68a875fabb085528b6c0b9",
+	"date": {
+		"$date": "2019-03-07T21:00:31.116Z"
+	},
+	"charge": 1600,
+	"concept": "queque Hic",
 	"editMode": false
 },
 {
@@ -739,6 +929,26 @@
 	"editMode": false
 },
 {
+	"_id": "MwctmepZALLEJn6Xj",
+	"studentID": "5c68a89efabb085528b6c1c9",
+	"date": {
+		"$date": "2019-03-05T22:13:46.066Z"
+	},
+	"charge": 400,
+	"concept": "Jugazo",
+	"editMode": false
+},
+{
+	"_id": "MwgoWQ9GeoznoaiSC",
+	"studentID": "5c68a873fabb085528b6c09d",
+	"date": {
+		"$date": "2019-03-05T23:03:43.201Z"
+	},
+	"charge": 100,
+	"concept": "saldo",
+	"editMode": false
+},
+{
 	"_id": "N3QZR3QkYHfzFiLxa",
 	"studentID": "5c68a867fabb085528b6c029",
 	"date": {
@@ -756,6 +966,16 @@
 	},
 	"charge": 200,
 	"concept": "Fusión",
+	"editMode": false
+},
+{
+	"_id": "NH6gthXskMCkXfdt2",
+	"studentID": "5c68a86bfabb085528b6c052",
+	"date": {
+		"$date": "2019-03-07T21:01:35.305Z"
+	},
+	"charge": 100,
+	"concept": "saldo",
 	"editMode": false
 },
 {
@@ -785,6 +1005,36 @@
 		"$date": "2019-02-20T16:01:49.746Z"
 	},
 	"charge": -4700,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "P4jAY9B4hsmdSMhPf",
+	"studentID": "5c68a864fabb085528b6c003",
+	"date": {
+		"$date": "2019-03-06T17:24:08.676Z"
+	},
+	"charge": 3000,
+	"concept": "sushi",
+	"editMode": false
+},
+{
+	"_id": "P9FRc98HmYN6k7Kme",
+	"studentID": "5c68a86ffabb085528b6c077",
+	"date": {
+		"$date": "2019-03-07T21:02:51.181Z"
+	},
+	"charge": 100,
+	"concept": "saldo",
+	"editMode": false
+},
+{
+	"_id": "PMFMGYbH3vFqfcbF5",
+	"studentID": "5c68a860fabb085528b6bfce",
+	"date": {
+		"$date": "2019-03-06T16:01:53.147Z"
+	},
+	"charge": 1000,
 	"concept": "pago",
 	"editMode": false
 },
@@ -829,6 +1079,16 @@
 	"editMode": false
 },
 {
+	"_id": "QMexNsYEvcukEpQjp",
+	"studentID": "5c68a86bfabb085528b6c057",
+	"date": {
+		"$date": "2019-03-06T15:57:19.603Z"
+	},
+	"charge": -3100,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "R7inZj7PprRuDS6ck",
 	"studentID": "5c68a869fabb085528b6c03e",
 	"date": {
@@ -859,6 +1119,16 @@
 	"editMode": false
 },
 {
+	"_id": "SRp23GyyfDfRzCdhT",
+	"studentID": "5c68a85efabb085528b6bfbd",
+	"date": {
+		"$date": "2019-03-05T22:51:04.706Z"
+	},
+	"charge": 1400,
+	"concept": "En Paleta",
+	"editMode": false
+},
+{
 	"_id": "SSKstHPLyBSXTbzRx",
 	"studentID": "5c68a8a1fabb085528b6c1e4",
 	"date": {
@@ -876,6 +1146,16 @@
 	},
 	"charge": 800,
 	"concept": "halls 2",
+	"editMode": false
+},
+{
+	"_id": "So4xcsASXCKdp5moH",
+	"studentID": "esudkcARXqLXnz6uz",
+	"date": {
+		"$date": "2019-03-05T22:47:51.546Z"
+	},
+	"charge": -900,
+	"concept": "pago",
 	"editMode": false
 },
 {
@@ -939,12 +1219,22 @@
 	"editMode": false
 },
 {
+	"_id": "WE8L7eemTEaCsjQq5",
+	"studentID": "5c68a85efabb085528b6bfbd",
+	"date": {
+		"$date": "2019-03-06T20:40:29.950Z"
+	},
+	"charge": 1000,
+	"concept": "frutas",
+	"editMode": false
+},
+{
 	"_id": "WLcDLGufRQnmZZD7P",
 	"studentID": "5c68a8a3fabb085528b6c1f9",
 	"date": {
-		"$date": "2019-02-26T00:24:49.242Z"
+		"$date": "2019-02-25T06:00:00.000Z"
 	},
-	"charge": -1000,
+	"charge": -500,
 	"concept": "Pago",
 	"editMode": false
 },
@@ -976,6 +1266,16 @@
 	},
 	"charge": -600,
 	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "WwGvMhwTwvpPAWqFX",
+	"studentID": "5c68a878fabb085528b6c0db",
+	"date": {
+		"$date": "2019-03-06T20:57:23.938Z"
+	},
+	"charge": 1000,
+	"concept": "power",
 	"editMode": false
 },
 {
@@ -1016,6 +1316,26 @@
 	},
 	"charge": 7600,
 	"concept": "Varios ",
+	"editMode": false
+},
+{
+	"_id": "XaA338ex64Ej4obYK",
+	"studentID": "5c68a893fabb085528b6c18c",
+	"date": {
+		"$date": "2019-03-07T21:51:23.697Z"
+	},
+	"charge": 1300,
+	"concept": "Trist",
+	"editMode": false
+},
+{
+	"_id": "XbcbR8Cx5mZyeyuvd",
+	"studentID": "5c68a893fabb085528b6c18c",
+	"date": {
+		"$date": "2019-03-06T20:56:19.272Z"
+	},
+	"charge": -800,
+	"concept": "pago",
 	"editMode": false
 },
 {
@@ -1069,6 +1389,16 @@
 	"editMode": false
 },
 {
+	"_id": "YQ57id4eb249cTa9M",
+	"studentID": "5c68a85efabb085528b6bfba",
+	"date": {
+		"$date": "2019-03-06T16:01:34.436Z"
+	},
+	"charge": -1200,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "YRXnyAwLq7MgFxxFQ",
 	"studentID": "5c68a89efabb085528b6c1c6",
 	"date": {
@@ -1089,6 +1419,16 @@
 	"editMode": false
 },
 {
+	"_id": "YxghGTMnguveRKKDp",
+	"studentID": "5c68a875fabb085528b6c0b3",
+	"date": {
+		"$date": "2019-03-06T21:15:00.444Z"
+	},
+	"charge": 200,
+	"concept": "lenguas",
+	"editMode": false
+},
+{
 	"_id": "Z6mPLbTAXzTmXGDP5",
 	"studentID": "5c68a85efabb085528b6bfbe",
 	"date": {
@@ -1106,6 +1446,16 @@
 	},
 	"charge": 800,
 	"concept": "Pushpop",
+	"editMode": false
+},
+{
+	"_id": "ZWo9E4DNHyyzP9TQn",
+	"studentID": "5c68a875fabb085528b6c0bd",
+	"date": {
+		"$date": "2019-03-06T17:40:39.753Z"
+	},
+	"charge": 3000,
+	"concept": " Sushi",
 	"editMode": false
 },
 {
@@ -1189,6 +1539,16 @@
 	"editMode": false
 },
 {
+	"_id": "bipG535EYfoRu3KZM",
+	"studentID": "5c68a875fabb085528b6c0b9",
+	"date": {
+		"$date": "2019-03-07T21:00:05.726Z"
+	},
+	"charge": -600,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "bkehYDojmauZjhmeJ",
 	"studentID": "5c68a8a3fabb085528b6c1fb",
 	"date": {
@@ -1196,6 +1556,26 @@
 	},
 	"charge": -200,
 	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "bw6hyuLugJqHtkdK9",
+	"studentID": "5c68a85efabb085528b6bfc6",
+	"date": {
+		"$date": "2019-03-07T20:58:51.218Z"
+	},
+	"charge": 1600,
+	"concept": "2 apretado flauta ",
+	"editMode": false
+},
+{
+	"_id": "byx88rEDLM8K3L4uL",
+	"studentID": "5c68a867fabb085528b6c029",
+	"date": {
+		"$date": "2019-03-07T18:32:50.588Z"
+	},
+	"charge": 1900,
+	"concept": "Reposteria Palomitas",
 	"editMode": false
 },
 {
@@ -1239,6 +1619,26 @@
 	"editMode": false
 },
 {
+	"_id": "cf2bKDDosohJKDRPh",
+	"studentID": "5c68a890fabb085528b6c17c",
+	"date": {
+		"$date": "2019-03-06T21:14:12.448Z"
+	},
+	"charge": 800,
+	"concept": "power lengua",
+	"editMode": false
+},
+{
+	"_id": "dj8ZYWydLWdvEYzwi",
+	"studentID": "5c68a86bfabb085528b6c057",
+	"date": {
+		"$date": "2019-03-06T21:45:29.563Z"
+	},
+	"charge": 1000,
+	"concept": "pizza",
+	"editMode": false
+},
+{
 	"_id": "dn4s6x8ixtwwe2vfa",
 	"studentID": "5c68a860fabb085528b6bfda",
 	"date": {
@@ -1265,6 +1665,16 @@
 		"$date": "2019-02-28T18:42:22.332Z"
 	},
 	"charge": -1500,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "e3DmZtzq3Xvvh2GAM",
+	"studentID": "5c68a876fabb085528b6c0c9",
+	"date": {
+		"$date": "2019-03-06T20:57:41.304Z"
+	},
+	"charge": -100,
 	"concept": "pago",
 	"editMode": false
 },
@@ -1339,6 +1749,26 @@
 	"editMode": false
 },
 {
+	"_id": "fzmwk6h6nQdasLBwQ",
+	"studentID": "5c68a88efabb085528b6c165",
+	"date": {
+		"$date": "2019-03-06T21:16:09.407Z"
+	},
+	"charge": 1400,
+	"concept": "tocinitos papiola fuze",
+	"editMode": false
+},
+{
+	"_id": "g8zaMTJ9nJBCKojze",
+	"studentID": "5c68a875fabb085528b6c0b9",
+	"date": {
+		"$date": "2019-03-05T23:04:59.738Z"
+	},
+	"charge": 600,
+	"concept": "queque banano",
+	"editMode": false
+},
+{
 	"_id": "gLqJrtcNYLbBvQybp",
 	"studentID": "5c68a862fabb085528b6bfeb",
 	"date": {
@@ -1366,6 +1796,16 @@
 	},
 	"charge": 200,
 	"concept": "tapitas 2",
+	"editMode": false
+},
+{
+	"_id": "hmAPFxWNjmD2mHu29",
+	"studentID": "5c68a897fabb085528b6c1ac",
+	"date": {
+		"$date": "2019-03-07T18:23:10.377Z"
+	},
+	"charge": 300,
+	"concept": "pinoleta",
 	"editMode": false
 },
 {
@@ -1426,6 +1866,16 @@
 	},
 	"charge": 200,
 	"concept": "okaloka",
+	"editMode": false
+},
+{
+	"_id": "isXTkhnqCt4Yq4MbW",
+	"studentID": "5c68a864fabb085528b6c005",
+	"date": {
+		"$date": "2019-03-05T22:51:39.606Z"
+	},
+	"charge": 1000,
+	"concept": "Flauta",
 	"editMode": false
 },
 {
@@ -1519,6 +1969,26 @@
 	"editMode": false
 },
 {
+	"_id": "m2WAinSybWwdMNLcH",
+	"studentID": "5c68a86ffabb085528b6c073",
+	"date": {
+		"$date": "2019-03-07T20:59:24.009Z"
+	},
+	"charge": -1600,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "mNQ74SvzbTZ2suuJQ",
+	"studentID": "5c68a864fabb085528b6bffb",
+	"date": {
+		"$date": "2019-03-05T22:40:33.218Z"
+	},
+	"charge": 600,
+	"concept": "agua",
+	"editMode": false
+},
+{
 	"_id": "miwzWjKLrtKBKn8Rv",
 	"studentID": "5c68a8a1fabb085528b6c1e3",
 	"date": {
@@ -1599,6 +2069,26 @@
 	"editMode": false
 },
 {
+	"_id": "nswQWhgxXY723TQXT",
+	"studentID": "5c68a866fabb085528b6c019",
+	"date": {
+		"$date": "2019-03-07T20:58:11.168Z"
+	},
+	"charge": 300,
+	"concept": "saldo",
+	"editMode": false
+},
+{
+	"_id": "oLRWLzkHGxa6XSdJv",
+	"studentID": "5c68a862fabb085528b6bfef",
+	"date": {
+		"$date": "2019-03-05T22:50:07.150Z"
+	},
+	"charge": 600,
+	"concept": "Agua",
+	"editMode": false
+},
+{
 	"_id": "oQrgAQLsxYfebDouW",
 	"studentID": "5c68a860fabb085528b6bfda",
 	"date": {
@@ -1619,6 +2109,36 @@
 	"editMode": false
 },
 {
+	"_id": "pAefq4pnHZwBDNuPL",
+	"studentID": "5c68a860fabb085528b6bfda",
+	"date": {
+		"$date": "2019-03-06T19:12:14.794Z"
+	},
+	"charge": -1300,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "pS6vpEm3kdfhiEYZc",
+	"studentID": "5c68a86ffabb085528b6c073",
+	"date": {
+		"$date": "2019-03-06T20:56:55.267Z"
+	},
+	"charge": 1600,
+	"concept": "pizza tropical",
+	"editMode": false
+},
+{
+	"_id": "pTRZrSNf2BtSxggJo",
+	"studentID": "5c68a860fabb085528b6bfcf",
+	"date": {
+		"$date": "2019-03-06T20:55:06.655Z"
+	},
+	"charge": -700,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "pobRbPT2qTpac5Tz9",
 	"studentID": "5c68a873fabb085528b6c09d",
 	"date": {
@@ -1626,6 +2146,16 @@
 	},
 	"charge": 400,
 	"concept": "Saldo helado",
+	"editMode": false
+},
+{
+	"_id": "q2dMkM6YuN7GKSKKc",
+	"studentID": "5c68a875fabb085528b6c0bf",
+	"date": {
+		"$date": "2019-03-06T17:41:04.155Z"
+	},
+	"charge": 3000,
+	"concept": "Sushi",
 	"editMode": false
 },
 {
@@ -1646,6 +2176,16 @@
 	},
 	"charge": 1000,
 	"concept": "Power",
+	"editMode": false
+},
+{
+	"_id": "qZZE3XPQFP82XmZed",
+	"studentID": "5c68a8a3fabb085528b6c1f9",
+	"date": {
+		"$date": "2019-03-07T16:46:51.142Z"
+	},
+	"charge": -2000,
+	"concept": "pago",
 	"editMode": false
 },
 {
@@ -1729,6 +2269,16 @@
 	"editMode": false
 },
 {
+	"_id": "s7y94SQRgod9YrdoJ",
+	"studentID": "5c68a898fabb085528b6c1bf",
+	"date": {
+		"$date": "2019-03-05T23:04:08.865Z"
+	},
+	"charge": -600,
+	"concept": "pago",
+	"editMode": false
+},
+{
 	"_id": "sAvoj9zzrbtC4Lbm4",
 	"studentID": "5c68a866fabb085528b6c011",
 	"date": {
@@ -1736,6 +2286,16 @@
 	},
 	"charge": 1000,
 	"concept": "Cangrejo",
+	"editMode": false
+},
+{
+	"_id": "sFmY84J2AvwjxLncy",
+	"studentID": "5c68a86bfabb085528b6c045",
+	"date": {
+		"$date": "2019-03-07T21:25:28.732Z"
+	},
+	"charge": 800,
+	"concept": "Marsmellow",
 	"editMode": false
 },
 {
@@ -1786,6 +2346,36 @@
 	},
 	"charge": 1700,
 	"concept": "hersey+skittles",
+	"editMode": false
+},
+{
+	"_id": "th89znoTTaH7jwAzv",
+	"studentID": "5c68a864fabb085528b6bffb",
+	"date": {
+		"$date": "2019-03-06T20:55:41.572Z"
+	},
+	"charge": -600,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "toCxCQMsguLXJXoWk",
+	"studentID": "5c68a866fabb085528b6c008",
+	"date": {
+		"$date": "2019-03-07T18:43:35.661Z"
+	},
+	"charge": 800,
+	"concept": "M\u0026M",
+	"editMode": false
+},
+{
+	"_id": "txenQqntTPkbfdwtJ",
+	"studentID": "5c68a862fabb085528b6bfe9",
+	"date": {
+		"$date": "2019-03-06T17:26:01.135Z"
+	},
+	"charge": 3000,
+	"concept": "sushi",
 	"editMode": false
 },
 {
@@ -1919,6 +2509,16 @@
 	"editMode": false
 },
 {
+	"_id": "waCeHha8e5Qnf9csh",
+	"studentID": "5c68a85efabb085528b6bfc6",
+	"date": {
+		"$date": "2019-03-05T22:40:58.764Z"
+	},
+	"charge": 3000,
+	"concept": "Crepa",
+	"editMode": false
+},
+{
 	"_id": "wdAdfAosWwKryPJPN",
 	"studentID": "5c68a8a3fabb085528b6c1fd",
 	"date": {
@@ -1945,6 +2545,16 @@
 		"$date": "2019-02-20T02:40:19.415Z"
 	},
 	"charge": -1000,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "xD7B2JEEgKSgKWLq4",
+	"studentID": "5c68a875fabb085528b6c0bd",
+	"date": {
+		"$date": "2019-03-07T21:01:07.194Z"
+	},
+	"charge": -3700,
 	"concept": "pago",
 	"editMode": false
 },
@@ -1999,12 +2609,32 @@
 	"editMode": false
 },
 {
+	"_id": "y2ffZorc9DJcwQguo",
+	"studentID": "5c68a85efabb085528b6bfc6",
+	"date": {
+		"$date": "2019-03-07T18:24:38.636Z"
+	},
+	"charge": 300,
+	"concept": "apretado",
+	"editMode": false
+},
+{
 	"_id": "yBu3wBnyizDZExjFZ",
 	"studentID": "5c68a85efabb085528b6bfc6",
 	"date": {
 		"$date": "2019-02-23T19:29:37.239Z"
 	},
 	"charge": -4000,
+	"concept": "pago",
+	"editMode": false
+},
+{
+	"_id": "yKqcX6YFyLs5SRBxr",
+	"studentID": "5c68a85efabb085528b6bfc6",
+	"date": {
+		"$date": "2019-03-06T21:13:26.665Z"
+	},
+	"charge": -10000,
 	"concept": "pago",
 	"editMode": false
 },
@@ -2086,6 +2716,16 @@
 	},
 	"charge": 1300,
 	"concept": "Frescoleche Nutrisnack",
+	"editMode": false
+},
+{
+	"_id": "zyCHdjBe9X2jHktTX",
+	"studentID": "5c68a897fabb085528b6c1ac",
+	"date": {
+		"$date": "2019-03-05T22:48:13.876Z"
+	},
+	"charge": -1400,
+	"concept": "pago",
 	"editMode": false
 }]
 
