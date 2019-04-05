@@ -16,15 +16,16 @@ allStudents = []
 pattern = re.compile('^[a-záéíóúñ ]+$', re.IGNORECASE)
 noneOfThese = re.compile(
     'TOTAL|HOMBRES|MUJERES| *Colegio *Saint *Francis| *LISTA *DE *CLASE|PROFESORA *GUIA:*| IDENTIFICACIÓN ', re.IGNORECASE)
+
 for img in listImg:
     listArray = pytesseract.image_to_string(
         Image.open("./list-png/" + img + ".png"), lang='spa')
     lines = listArray.splitlines()
-    for l in lines:
-        l = l.strip()
-        l = re.sub(r"\d|\.|-|\[|`|\(|\)|_|‘|'|’", "", l)
-        if len(l) > 2 and pattern.match(l) and not noneOfThese.match(l):
-            names = l.lower().split()
+    for singleLine in lines:
+        singleLine = singleLine.strip()
+        singleLine = re.sub(r"\d|\.|-|\[|`|\(|\)|_|‘|'|’", "", singleLine)
+        if len(singleLine) > 2 and pattern.match(singleLine) and not noneOfThese.match(singleLine):
+            names = singleLine.lower().split()
             howmany = len(names)
             student = None
             if howmany == 2:

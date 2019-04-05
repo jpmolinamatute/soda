@@ -7,12 +7,14 @@ import { Mongo } from 'meteor/mongo';
 
 const MONTHS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec'];
 let HISTORY;
-const STUDENTS = new Mongo.Collection('students');
+let STUDENTS;
 
 if (Meteor.isDevelopment) {
     HISTORY = new Mongo.Collection('historyDev');
+    STUDENTS = new Mongo.Collection('studentsDev');
 } else if (Meteor.isProduction) {
     HISTORY = new Mongo.Collection('history');
+    STUDENTS = new Mongo.Collection('students');
 }
 
 function filterDate(somedate) {

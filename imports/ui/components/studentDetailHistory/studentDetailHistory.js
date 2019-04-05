@@ -1,5 +1,6 @@
-import './history.html';
-import { HISTORY, filterDate, STUDENTS } from '../../../startup/both/index.js';
+import './studentDetailHistory.html';
+import { studentInfo, validStudentInfo } from '../studentInfo.js';
+import { HISTORY, filterDate } from '../../../startup/both/index.js';
 import { getToday } from '../addCharge/addCharge.js';
 
 function onlyDate(somedate) {
@@ -49,13 +50,17 @@ function saveCharge(event, _id) {
         form.classList.add('was-validated');
     }
 }
-Template.history.helpers({
-    history(total) {
-        const studentID = this.studentID;
+
+Template.studentdetailhistory.helpers({
+    history() {
         let cursor = false;
-        if (total !== 0) {
-            cursor = HISTORY.find({ studentID }, { sort: { date: 1 } });
+        const student = studentInfo.get();
+        const total = Template.instance().total.get();
+        if (typeof student === 'object'
+            && total !== 0) {
+            cursor = HISTORY.find({ studentID: student._id }, { sort: { date: 1 } });
         }
+
         return cursor;
     },
     isCharge(charge) {
@@ -71,16 +76,19 @@ Template.history.helpers({
         }
         return label;
     },
-    total() {
-        let result = 0;
-        const studentID = this.studentID;
-        HISTORY.find({ studentID }, { fields: { charge: 1 } }).forEach((doc) => {
-            result += doc.charge;
-        });
+    totalColor() {
+        const total = Template.instance().total.get();
+        let result = 'black';
+        if (total > 0) {
+            result = 'red';
+        } else if (total < 0) {
+            result = 'green';
+        }
         return result;
     },
-    totalString(total) {
+    totalString() {
         let result;
+        const total = Template.instance().total.get();
 
         if (total > 0) {
             result = `Debe ${total.toLocaleString()} Colones`;
@@ -96,11 +104,7 @@ Template.history.helpers({
     onlyDate
 });
 
-Template.history.onCreated(function historyonCreated() {
-    this.subscribe('history', this.data.studentID);
-});
-
-Template.history.events({
+Template.studentdetailhistory.events({
     'click div#history-wrap table td button[data-type="save"]': function clickHistory(event) {
         const _id = this._id;
         saveCharge(event, _id);
@@ -116,9 +120,52 @@ Template.history.events({
         const _id = this._id;
         HISTORY.remove({ _id });
         event.stopPropagation();
+    },
+    'click button#close-history': (event, templateInstance) => {
+        document.getElementById('student-history').style.display = 'none';
+        Blaze.remove(templateInstance.view);
+        event.stopPropagation();
+    },
+    'click button#print-history': (event, templateInstance) => {
+        const when = new Date();
+        const stringDate = filterDate(when);
+        const student = studentInfo.get();
+        if (typeof student === 'object') {
+            Meteor.call('studentBalance', stringDate, student, (error, htmlString) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    const w = window.outerWidth;
+                    const h = window.outerHeight;
+                    const mywindow = window.open('', 'Print', `width=${w},height=${h}`, false);
+                    mywindow.document.write(htmlString);
+                    mywindow.document.close();
+                    mywindow.focus();
+                    document.getElementById('student-history').style.display = 'none';
+                    Blaze.remove(templateInstance.view);
+                }
+            });
+        }
+        event.stopPropagation();
     }
 });
 
-Template.history.onRendered(() => {
-    document.getElementById('student-history').style.display = 'block';
+Template.studentdetailhistory.onCreated(function historyonCreated() {
+    this.total = new ReactiveVar(0);
+    this.autorun(() => {
+        const student = studentInfo.get();
+        if (typeof student === 'object') {
+            this.subscribe('history', student._id, () => {
+                let tmpTotal = 0;
+                HISTORY.find({ studentID: student._id }, { fields: { charge: 1 } }).forEach((doc) => {
+                    tmpTotal += doc.charge;
+                });
+                this.total.set(tmpTotal);
+            });
+        }
+    });
+});
+
+Template.studentdetailhistory.onRendered(function studentdetailhistoryonRendered() {
+    this.find('div#student-history').style.display = 'block';
 });

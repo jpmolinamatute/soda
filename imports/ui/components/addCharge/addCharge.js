@@ -1,5 +1,7 @@
 import './addCharge.html';
 import { HISTORY } from '../../../startup/both/index.js';
+import { studentInfo } from '../studentInfo.js';
+
 
 function getToday(somedate) {
     let todayDate;
@@ -17,7 +19,7 @@ function getToday(somedate) {
     return `${year}-${month}-${day}`;
 }
 
-function saveCharge(event, templateInstance) {
+function saveCharge(event) {
     const form = event.currentTarget.closest('div.needs-validation');
     const concept = document.getElementById('item-concept');
     const charge = document.getElementById('item-charge');
@@ -25,15 +27,12 @@ function saveCharge(event, templateInstance) {
     const radioPay = document.getElementById('type-pay');
     const inputDate = document.getElementById('datepicker');
     const type = radioCharge.checked ? radioCharge.value : radioPay.value;
-
-
-    if (concept.value.length > 0
+    const student = studentInfo.get();
+    if (typeof student === 'object'
+        && concept.value.length > 0
         && charge.value.length > 0
         && charge.value !== '0'
         && type.length > 0) {
-        const studentID = templateInstance.data.studentID;
-
-
         let date = new Date();
         const arrayDate = inputDate.value.split('-');
         const inputDay = parseInt(arrayDate[2], 10);
@@ -51,7 +50,7 @@ function saveCharge(event, templateInstance) {
             chargenum *= -1;
         }
         HISTORY.insert({
-            studentID,
+            studentID: student._id,
             date,
             charge: chargenum,
             concept: concept.value,
@@ -60,6 +59,7 @@ function saveCharge(event, templateInstance) {
 
         charge.value = '';
         concept.value = '';
+        concept.readOnly = false;
         inputDate.value = getToday();
         radioCharge.checked = true;
         radioPay.checked = false;
@@ -80,13 +80,24 @@ Template.addCharge.events({
             event.currentTarget.classList.add('is-invalid');
         }
     },
-    'click button#save-item': (event, templateInstance) => {
-        saveCharge(event, templateInstance);
+    'click button#save-item': (event) => {
+        saveCharge(event);
         event.stopPropagation();
     },
-    'keyup input#item-charge': (event, templateInstance) => {
+    'keyup input#item-charge': (event) => {
         if (event.keyCode === 13) {
-            saveCharge(event, templateInstance);
+            saveCharge(event);
+        }
+    },
+    'change input[type="radio"]:checked': (event) => {
+        const value = event.currentTarget.value;
+        const conceptInput = document.getElementById('item-concept');
+        if (value === 'pay') {
+            conceptInput.value = 'Estudiante pagó';
+            conceptInput.readOnly = true;
+        } else if (value === 'charge') {
+            conceptInput.value = '';
+            conceptInput.readOnly = false;
         }
     }
 });

@@ -1,12 +1,19 @@
 import { Meteor } from 'meteor/meteor';
-import { HISTORY } from '../both/index.js';
+import { HISTORY, STUDENTS } from '../both/index.js';
 
 Meteor.startup(() => {
     if (Meteor.isDevelopment) {
-        const pro = new Mongo.Collection('history');
+        const proHistory = new Mongo.Collection('history');
+        const proStudent = new Mongo.Collection('students');
+        console.log('Removing data from historyDev');
         HISTORY.remove({});
-        pro.find({}).forEach((doc) => {
+        console.log('Removing data from studentDev');
+        STUDENTS.remove({});
+        proHistory.find({}).forEach((doc) => {
             HISTORY.insert(doc);
+        });
+        proStudent.find({}).forEach((doc) => {
+            STUDENTS.insert(doc);
         });
     }
 });

@@ -1,4 +1,6 @@
 import './addStudent.html';
+import '../gradelist/gradelist';
+import { Blaze } from 'meteor/blaze';
 import { STUDENTS } from '../../../startup/both/index.js';
 
 function getName(elementID) {
@@ -7,7 +9,7 @@ function getName(elementID) {
     return name.toLowerCase();
 }
 
-function clearAllFields() {
+function clearAllFields(templateInstance) {
     const list = ['student-name', 'student-middle', 'student-last1', 'student-last2', 'student-grade'];
     list.forEach((e) => {
         const field = document.getElementById(e);
@@ -16,18 +18,22 @@ function clearAllFields() {
             field.classList.remove('is-invalid');
         }
     });
+    Blaze.remove(templateInstance.view);
 }
 
 Template.addStudent.events({
     'blur input, blur select': (event) => {
         const value = event.currentTarget.value.trim();
-        if (value.length > 0) {
-            event.currentTarget.classList.remove('is-invalid');
-        } else {
-            event.currentTarget.classList.add('is-invalid');
+
+        if (event.currentTarget.required) {
+            if (value.length > 0) {
+                event.currentTarget.classList.remove('is-invalid');
+            } else {
+                event.currentTarget.classList.add('is-invalid');
+            }
         }
     },
-    'click button#student-save': (event) => {
+    'click button#student-save': (event, templateInstance) => {
         const name = getName('student-name');
         const middle = getName('student-middle');
         const last1 = getName('student-last1');
@@ -53,22 +59,24 @@ Template.addStudent.events({
                 });
             }
             fieldset.classList.remove('was-validated');
-            clearAllFields();
-            document.getElementById('add-student').style.display = 'none';
+            clearAllFields(templateInstance);
         } else {
             fieldset.classList.add('was-validated');
         }
         event.stopPropagation();
     },
-    'click button#student-close': (event) => {
+    'click button#student-close': (event, templateInstance) => {
         const fieldset = event.currentTarget.closest('div.needs-validation');
         fieldset.classList.remove('was-validated');
-        clearAllFields();
-        document.getElementById('add-student').style.display = 'none';
+        clearAllFields(templateInstance);
         event.stopPropagation();
     }
     // 'keyup input#student-search': (event, templateInstance) => {
     //     const name = event.currentTarget.value;
     //     Meteor.subscribe('studentsList', name);
     // }
+});
+
+Template.addStudent.onRendered(function () {
+    this.find('input#student-name').focus();
 });

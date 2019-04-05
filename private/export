@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 BACKUPDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)/backups"
-historyjson="$BACKUPDIR/history.json"
-studentjson="$BACKUPDIR/students.json"
+historyjson="$BACKUPDIR/history $(date +"%F %r").json"
+studentjson="$BACKUPDIR/students $(date +"%F %r").json"
 
 if [[ -f $historyjson ]]; then
     echo "Removing old $historyjson"
