@@ -20,8 +20,7 @@ function getSelectValues(select) {
 
 Template.allreports.events({
     'click button#print-all-history': (event) => {
-        const when = new Date();
-        const stringDate = filterDate(when);
+        const stringDate = filterDate(false, false);
         const element = document.querySelector('div#right-panel div.right-bottom input[name="report-type"]:checked');
         const select = document.getElementById('report-filtered-grade');
         const selectValues = getSelectValues(select);

@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 METEORDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
-SRCDIR="$(cd "$METEORDIR" && cd .. && pwd)"
+SRCDIR="/web"
 bundle="${SRCDIR}/bundle"
 
 npmrc="${bundle}/programs/server/.npmrc"
-export PATH="/home/juanpa/Projects/nodejs/bin:${PATH}"
+PATH="${SRCDIR}/nodejs/bin:${PATH}"
+export PATH
 
 cd "$METEORDIR" || exit 2
 

@@ -17,36 +17,29 @@ if (Meteor.isDevelopment) {
     STUDENTS = new Mongo.Collection('students');
 }
 
-function filterDate(somedate) {
+function filterDate(somedate, input = false) {
     let str = false;
-    if (somedate instanceof Date) {
-        let day = somedate.getDate();
-        let month = somedate.getMonth();
-        const year = somedate.getFullYear();
-        let hour = somedate.getHours();
-        let min = somedate.getMinutes();
-        const sec = somedate.getSeconds();
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        let defaultTime = true;
-        if (hour === 0 && min === 0 && sec === 0) {
-            defaultTime = false;
-        }
-        day = day < 10 ? `0${day}` : day;
-        month = MONTHS[month];
-        min = min < 10 ? `0${min}` : min;
+    let myDate;
 
-        if (hour > 12) {
-            hour -= 12;
-        } else if (hour === 0) {
-            hour = 12;
-        } else if (hour < 10) {
-            hour = `0${hour}`;
-        }
-        if (defaultTime) {
-            str = `${day}/${month}/${year}  ${hour}:${min} ${ampm}`;
-        } else {
-            str = `${day}/${month}/${year}`;
-        }
+    if (typeof somedate === 'number' || typeof somedate === 'string') {
+        myDate = new Date(somedate);
+    } else if (somedate instanceof Date) {
+        myDate = somedate;
+    } else {
+        myDate = new Date();
+    }
+    let day = myDate.getDate();
+    let month = myDate.getMonth();
+    const year = myDate.getFullYear();
+    day = day < 10 ? `0${day}` : day;
+
+    if (input) {
+        month += 1;
+        month = month < 10 ? `0${month}` : month;
+        str = `${year}-${month}-${day}`;
+    } else {
+        month = MONTHS[month];
+        str = `${day}/${month}/${year}`;
     }
 
     return str;

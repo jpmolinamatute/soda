@@ -1,23 +1,7 @@
 import './addCharge.html';
-import { HISTORY } from '../../../startup/both/index.js';
+import { HISTORY, filterDate } from '../../../startup/both/index.js';
 import { studentInfo } from '../studentInfo.js';
 
-
-function getToday(somedate) {
-    let todayDate;
-    if (typeof somedate === 'undefined') {
-        todayDate = new Date();
-    } else {
-        todayDate = new Date(somedate);
-    }
-
-    let day = todayDate.getDate();
-    let month = todayDate.getMonth() + 1;
-    const year = todayDate.getFullYear();
-    day = day < 10 ? `0${day}` : day;
-    month = month < 10 ? `0${month}` : month;
-    return `${year}-${month}-${day}`;
-}
 
 function saveCharge(event) {
     const form = event.currentTarget.closest('div.needs-validation');
@@ -31,18 +15,12 @@ function saveCharge(event) {
     if (typeof student === 'object'
         && concept.value.length > 0
         && charge.value.length > 0
-        && charge.value !== '0'
-        && type.length > 0) {
-        let date = new Date();
+        && charge.value !== '0') {
         const arrayDate = inputDate.value.split('-');
         const inputDay = parseInt(arrayDate[2], 10);
         const inputMonth = parseInt(arrayDate[1], 10);
         const inputYear = parseInt(arrayDate[0], 10);
-        if (inputYear !== date.getFullYear()
-            || inputMonth !== date.getMonth() + 1
-            || inputDay !== date.getDate()) {
-            date = new Date(inputYear, inputMonth - 1, inputDay, 0, 0, 0, 0);
-        }
+        const date = new Date(inputYear, inputMonth - 1, inputDay, 0, 0, 0, 0);
 
         let chargenum = parseInt(charge.value, 10);
 
@@ -60,7 +38,7 @@ function saveCharge(event) {
         charge.value = '';
         concept.value = '';
         concept.readOnly = false;
-        inputDate.value = getToday();
+        inputDate.value = filterDate(false, true);
         radioCharge.checked = true;
         radioPay.checked = false;
         concept.focus();
@@ -104,7 +82,7 @@ Template.addCharge.events({
 
 
 Template.addCharge.helpers({
-    getToday
+    filterDate
 });
 
 Template.addCharge.onCreated(function addChargeonCreated() {
@@ -115,5 +93,3 @@ Template.addCharge.onCreated(function addChargeonCreated() {
 Template.addCharge.onRendered(function () {
     this.find('input#item-concept').focus();
 });
-
-export { getToday };

@@ -5,9 +5,9 @@ Meteor.startup(() => {
     if (Meteor.isDevelopment) {
         const proHistory = new Mongo.Collection('history');
         const proStudent = new Mongo.Collection('students');
-        console.log('Removing data from historyDev');
+        console.info('Removing data from historyDev');
         HISTORY.remove({});
-        console.log('Removing data from studentDev');
+        console.info('Removing data from studentDev');
         STUDENTS.remove({});
         proHistory.find({}).forEach((doc) => {
             HISTORY.insert(doc);

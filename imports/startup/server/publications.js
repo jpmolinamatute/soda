@@ -10,14 +10,11 @@ STUDENTS.allow({
     insert(id, doc) {
         const validGrade = Match.Where((x) => {
             check(x, String);
-            const isGrade = /(^[0-9]{1,2}[A-D]$)|preparatorio|prekinder|maternal/;
+            const isGrade = /(^[0-9]{1,2}[A-C]$)|P|PK|K/;
 
             return isGrade.test(x);
         });
-        check(doc.name, NonEmptyString);
-        check(doc.middle, Match.Optional(String));
-        check(doc.last1, NonEmptyString);
-        check(doc.last2, Match.Optional(String));
+        check(doc.fullname, NonEmptyString);
         check(doc.grade, validGrade);
 
         return true;
@@ -47,7 +44,7 @@ HISTORY.allow({
     }
 });
 
-Meteor.publish('studentsList', () => STUDENTS.find({}, { sort: { name: 1 } }));
+Meteor.publish('studentsList', () => STUDENTS.find({}, { sort: { fullname: 1 } }));
 
 
 Meteor.publish('history', (studentID) => {

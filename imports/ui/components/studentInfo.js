@@ -13,6 +13,8 @@ function setStudentInfo(studentID) {
     let info = false;
     if (STUDENTS.find({ _id: studentID }).count() === 1) {
         info = STUDENTS.findOne({ _id: studentID });
+    } else if (typeof studentID === 'boolean') {
+        info = studentID;
     }
     studentInfo.set(info);
 }

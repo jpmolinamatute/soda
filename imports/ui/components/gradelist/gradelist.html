@@ -3,60 +3,24 @@
         <label for="{{tagid}}">Grado :</label>
         <select id="{{tagid}}" class="form-control" size="{{#if multiple}}5{{else}}false{{/if}}" multiple="{{multiple}}"
             required={{required}}>
-            <option value="" default="{{#if multiple}}default{{else}}false{{/if}}">--</option>
-            <optgroup label="Prescolar">
-                <option value="PK">Prekinder</option>
-                <option value="K">Kinder</option>
-                <option value="P">Preparatorio</option>
-            </optgroup>
-            <optgroup label="Primaria">
-                <option value="1A">1A</option>
-                <option value="1B">1B</option>
-                <option value="1C">1C</option>
-                <option value="1D">1D</option>
-                <option value="2A">2A</option>
-                <option value="2B">2B</option>
-                <option value="2C">2C</option>
-                <option value="2D">2D</option>
-                <option value="3A">3A</option>
-                <option value="3B">3B</option>
-                <option value="3C">3C</option>
-                <option value="3D">3D</option>
-                <option value="4A">4A</option>
-                <option value="4B">4B</option>
-                <option value="4C">4C</option>
-                <option value="4D">4D</option>
-                <option value="5A">5A</option>
-                <option value="5B">5B</option>
-                <option value="5C">5C</option>
-                <option value="5D">5D</option>
-                <option value="6A">6A</option>
-                <option value="6B">6B</option>
-                <option value="6C">6C</option>
-                <option value="6D">6D</option>
-            </optgroup>
-            <optgroup label="Secundaria">
-                <option value="7A">7A</option>
-                <option value="7B">7B</option>
-                <option value="7C">7C</option>
-                <option value="7D">7D</option>
-                <option value="8A">8A</option>
-                <option value="8B">8B</option>
-                <option value="8C">8C</option>
-                <option value="8D">8D</option>
-                <option value="9A">9A</option>
-                <option value="9B">9B</option>
-                <option value="9C">9C</option>
-                <option value="9D">9D</option>
-                <option value="10A">10A</option>
-                <option value="10B">10B</option>
-                <option value="10C">10C</option>
-                <option value="10D">10D</option>
-                <option value="11A">11A</option>
-                <option value="11B">11B</option>
-                <option value="11C">11C</option>
-                <option value="11D">11D</option>
-            </optgroup>
+            <option value="" selected="{{multiple}}">--</option>
+            {{#with list}}
+                <optgroup label="Prescolar">
+                    {{#each prescolar}}
+                        <option value="{{.}}">{{.}}</option>
+                    {{/each}}
+                </optgroup>
+                <optgroup label="Primaria">
+                    {{#each primaria}}
+                        <option value="{{.}}">{{.}}</option>
+                    {{/each}}
+                </optgroup>
+                <optgroup label="Secundaria">
+                    {{#each secundaria}}
+                        <option value="{{.}}">{{.}}</option>
+                    {{/each}}
+                </optgroup>
+            {{/with}}
         </select>
     </div>
 </template>

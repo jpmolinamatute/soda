@@ -1,0 +1,18 @@
+<template name="allstudents">
+    <div id="all-students-container">
+        <div class="list-right">
+            {{> gradelist multiple=false required=true tagid="all-student-grade"}}
+        </div>
+        <div class="list-left">
+            <h1>Mostrando grado: {{grade}}</h1>
+            <hr>
+            <ul id="all-students-list">
+                {{#each list}}
+                    <li>
+                        <span>{{fullname}}</span>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</template>

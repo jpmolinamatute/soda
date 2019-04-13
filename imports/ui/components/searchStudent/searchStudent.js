@@ -4,7 +4,7 @@ import '../runBackup/runBackup.js';
 import { STUDENTS } from '../../../startup/both/index.js';
 import { setStudentInfo } from '../studentInfo.js';
 
-const isGrade = /(^[0-9]{1,2}[a-d]$)|preparatorio|prekinder|maternal/;
+const isGrade = /(^[0-9]{1,2}[a-d]$)|P|PK|K/;
 const LIMIT = 30;
 
 function resetSearch(templateInstance, id) {
@@ -16,27 +16,22 @@ function resetSearch(templateInstance, id) {
 
 Template.searchstudent.helpers({
     students() {
-        const name = Template.instance().studentName.get();
+        let name = Template.instance().studentName.get();
         let list = false;
         if (typeof name === 'string' && name.length > 1) {
             let QUERY;
 
             if (isGrade.test(name)) {
+                name = name.toUpperCase();
                 QUERY = {
-                    grade: name.toUpperCase()
+                    grade: name
                 };
             } else {
-                QUERY = {
-                    $or: [
-                        { name: { $regex: new RegExp(name) } },
-                        { middle: { $regex: new RegExp(name) } },
-                        { last1: { $regex: new RegExp(name) } },
-                        { last2: { $regex: new RegExp(name) } }
-                    ]
-                };
+                name = name.toLowerCase();
+                QUERY = { fullname: { $regex: new RegExp(name) } };
             }
 
-            list = STUDENTS.find(QUERY, { sort: { name: 1, middle: 1, last1: 1 }, limit: LIMIT });
+            list = STUDENTS.find(QUERY, { sort: { fullname: 1 }, limit: LIMIT });
         }
         return list;
     },
@@ -53,23 +48,6 @@ Template.searchstudent.helpers({
     isActive(index) {
         const current = Template.instance().indexSeleted.get();
         return index === current;
-    },
-    filter(txt, bold) {
-        let filteredTXT = '';
-        if (typeof txt === 'string' && txt !== 'na') {
-            const name = Template.instance().studentName.get();
-            if (bold === 'yes') {
-                const regex = new RegExp(name);
-                if (regex.test(txt)) {
-                    filteredTXT = `<b>${txt.charAt(0).toUpperCase()}${txt.substring(1)}</b>`;
-                } else {
-                    filteredTXT = `${txt.charAt(0).toUpperCase()}${txt.substring(1)}`;
-                }
-            } else {
-                filteredTXT = `${txt.charAt(0).toUpperCase()}${txt.substring(1)}`;
-            }
-        }
-        return filteredTXT;
     }
 });
 
@@ -115,6 +93,11 @@ Template.searchstudent.events({
         const nextNode = document.getElementById('app-home');
         Blaze.render(Template.addStudent, parent, nextNode);
         event.stopPropagation();
+    },
+    'change input#all-students': (event, templateInstance) => {
+        const checked = event.currentTarget.checked;
+        document.getElementById('search-student').disabled = checked;
+        resetSearch(templateInstance, checked);
     }
 });
 

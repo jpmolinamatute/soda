@@ -1,39 +1,28 @@
 import './studentDetailHistory.html';
-import { studentInfo, validStudentInfo } from '../studentInfo.js';
+import { studentInfo } from '../studentInfo.js';
 import { HISTORY, filterDate } from '../../../startup/both/index.js';
-import { getToday } from '../addCharge/addCharge.js';
-
-function onlyDate(somedate) {
-    return getToday(somedate);
-}
 
 function saveCharge(event, _id) {
     const form = event.currentTarget.closest('tr.needs-validation');
-    const concept = document.getElementById('edit-item-concept');
-    const charge = document.getElementById('edit-item-charge');
-    const radioCharge = document.getElementById('edit-type-charge');
-    const radioPay = document.getElementById('edit-type-pay');
-    const inputDate = document.getElementById('edit-datepicker');
-    const type = radioCharge.checked ? radioCharge.value : radioPay.value;
+    const input = form.getElementsByTagName('input');
+    const concept = input.namedItem('concept');
+    const charge = input.namedItem('charge');
+    const inputDate = input.namedItem('datepicker');
+    const radioCharge = document.getElementById(`edit-type-charge-${_id}`);
+    const type = radioCharge.checked ? radioCharge.value : 'pay';
 
-    if (concept.value.length > 0
+    if (typeof _id === 'string'
+        && concept.value.length > 0
         && charge.value.length > 0
-        && charge.value !== '0'
-        && type.length > 0) {
-        let date = new Date();
+        && charge.value !== '0') {
         const arrayDate = inputDate.value.split('-');
         const inputDay = parseInt(arrayDate[2], 10);
-        const inputMonth = parseInt(arrayDate[1], 10);
+        const inputMonth = parseInt(arrayDate[1], 10) - 1;
         const inputYear = parseInt(arrayDate[0], 10);
-        if (inputYear !== date.getFullYear()
-            || inputMonth !== date.getMonth() + 1
-            || inputDay !== date.getDate()) {
-            date = new Date(inputYear, inputMonth - 1, inputDay, 0, 0, 0, 0);
-        }
-
+        const date = new Date(inputYear, inputMonth, inputDay, 0, 0, 0, 0);
         let chargenum = parseInt(charge.value, 10);
 
-        if (type === 'pay') {
+        if (type === 'pay' && chargenum > 0) {
             chargenum *= -1;
         }
 
@@ -99,9 +88,7 @@ Template.studentdetailhistory.helpers({
         }
         return result;
     },
-    filterDate,
-    getToday,
-    onlyDate
+    filterDate
 });
 
 Template.studentdetailhistory.events({
@@ -127,8 +114,7 @@ Template.studentdetailhistory.events({
         event.stopPropagation();
     },
     'click button#print-history': (event, templateInstance) => {
-        const when = new Date();
-        const stringDate = filterDate(when);
+        const stringDate = filterDate(false, false);
         const student = studentInfo.get();
         if (typeof student === 'object') {
             Meteor.call('studentBalance', stringDate, student, (error, htmlString) => {
@@ -167,5 +153,5 @@ Template.studentdetailhistory.onCreated(function historyonCreated() {
 });
 
 Template.studentdetailhistory.onRendered(function studentdetailhistoryonRendered() {
-    this.find('div#student-history').style.display = 'block';
+    this.find('div#student-history').style.display = 'flex';
 });

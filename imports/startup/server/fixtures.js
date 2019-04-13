@@ -4,52 +4,74 @@ import { check } from 'meteor/check';
 import { exec } from 'child_process';
 import { STUDENTS, HISTORY, filterDate } from '../both/index.js';
 
-const GRADES = [
-    '10A',
-    '10B',
-    '10C',
-    '11A',
-    '11B',
-    '11C',
-    '7B',
-    '7C',
-    '8A',
-    '8B',
-    '8C',
-    '7A',
-    '9A',
-    '9B',
-    '9C',
-    '1A',
-    '1B',
-    '1C',
-    '2A',
-    '2B',
-    '3A',
-    '3B',
-    '3C',
-    '4A',
-    '4B',
-    '4C',
-    '5A',
-    '5B',
-    '5C',
-    '6A',
-    '6B',
-    '6C',
-    'KA',
-    'KB',
-    'PB',
-    'PC',
-    'PKB'
-];
+function sortSecundaria(a, b) {
+    const numA = parseInt(a, 10);
+    const numB = parseInt(b, 10);
+    let result = 0;
+
+    if (numA > numB) {
+        result = 1;
+    } else if (numA < numB) {
+        result = -1;
+    }
+    return result;
+}
+
+function getGradeList(divided) {
+    let list = [];
+
+    const cursor = STUDENTS.find({}, {
+        fields: {
+            _id: 0,
+            grade: 1
+        },
+        sort: {
+            grade: 1
+        },
+        reactive: false
+    });
+    if (divided) {
+        const regexPrimaria = /^[0-6][A-C]$/;
+        const regexSecundaria = /^[7-9][A-C]$|^1[0-2][A-C]$/;
+        const regexPrescolar = /^P$|^PK$|^K$/;
+        list = {
+            prescolar: [],
+            primaria: [],
+            secundaria: []
+        };
+        cursor.forEach((doc) => {
+            if (regexPrimaria.test(doc.grade)
+                && !list.primaria.includes(doc.grade)) {
+                list.primaria.push(doc.grade);
+            } else if (regexSecundaria.test(doc.grade)
+                && !list.secundaria.includes(doc.grade)) {
+                list.secundaria.push(doc.grade);
+            } if (regexPrescolar.test(doc.grade)
+                && !list.prescolar.includes(doc.grade)) {
+                list.prescolar.push(doc.grade);
+            }
+        });
+        list.primaria.sort();
+        list.prescolar.sort();
+        list.secundaria.sort(sortSecundaria);
+    } else {
+        list = [];
+        cursor.forEach((doc) => {
+            if (!list.includes(doc.grade)) {
+                list.push(doc.grade);
+            }
+        });
+        list.sort(sortSecundaria);
+    }
+    return list;
+}
 
 function getTableBody(query, options) {
     let rows = '<tbody>';
     HISTORY.find(query, options).forEach((doc) => {
         rows += `
         <tr>
-            <td>${filterDate(doc.date)}</td>
+            <td>${filterDate(doc.date, false)}</td>
             <td>${doc.concept}</td>
             <td>${doc.charge.toLocaleString()}</td>
         </tr>
@@ -88,7 +110,9 @@ function getTable(balance, query, grade) {
     });
     const tableFooter = getTableFooter(balance);
     return `
-    <span class="tag">Grado: </span><span class="student">${grade}</span><br>
+    <span class="tag">Grado: </span>
+    <span class="student">${grade}</span>
+    <br>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -100,14 +124,15 @@ function getTable(balance, query, grade) {
         ${historial}
         ${tableFooter}
     </table>
-    <hr>`;
+    <hr style="width: 100%;">`;
 }
 
 function getTotalBalance(query) {
     let balance = 0;
     HISTORY.find(query, {
         fields: {
-            _id: 0, charge: 1
+            _id: 0,
+            charge: 1
         }
     }).forEach((doc) => {
         if (typeof doc.charge === 'number') {
@@ -163,11 +188,10 @@ function getHTMLHeaderFooter(stringDate, queryType, gradeFilter = []) {
                     span.tag {
                         font-weight: bold;
                     }
-                    span.student {
+                    .student {
                         text-transform: capitalize;
                     }
                     hr {
-                        width: 100%;
                         border-top: 2px dashed black;
                         margin-left: 0;
                     }
@@ -186,6 +210,10 @@ function getHTMLHeaderFooter(stringDate, queryType, gradeFilter = []) {
                     div#main button.btn{
                         margin:15px;
                     }
+                    .fifty {
+                        width: 50%;
+                        margin: 0 auto;
+                    }
                 </style>
             </head>
             <body>
@@ -200,27 +228,16 @@ function getHTMLHeaderFooter(stringDate, queryType, gradeFilter = []) {
     };
 }
 
-
 function balanceByStudent(student) {
     const query = { studentID: student._id };
     const balance = getTotalBalance(query);
     let list = '';
     if (balance) {
-        let fullName = student.name;
-        if (typeof student.middle === 'string') {
-            fullName += ` ${student.middle}`;
-        }
-        if (typeof student.last1 === 'string') {
-            fullName += ` ${student.last1}`;
-        }
-        if (typeof student.last2 === 'string') {
-            fullName += ` ${student.last2}`;
-        }
         const table = getTable(balance, query, student.grade);
         list = `
             <br>
             <span class="tag">Estudiante: </span>
-            <span class="student">${fullName}</span>
+            <span class="student">${student.fullname}</span>
             <br>
             ${table}
         `;
@@ -228,20 +245,64 @@ function balanceByStudent(student) {
     return list;
 }
 
-
 function balanceByGrade(grade) {
     const query = { studentID: { $in: [] } };
-    let list = '';
-    STUDENTS.find({ grade }, { fields: { _id: 1 }, sort: { grade: 1 } }).forEach((doc) => {
+    STUDENTS.find({ grade }, { fields: { _id: 1 }, sort: { grade: 1 }, reactive: false }).forEach((doc) => {
         query.studentID.$in.push(doc._id);
     });
-    const balance = getTotalBalance(query);
-    if (balance) {
-        list = `<br>${getTable(balance, query, grade)}`;
-    }
-    return list;
+    return getTotalBalance(query);
 }
 
+function balancesumarized(grade) {
+    let list = '';
+    const gradeBalance = balanceByGrade(grade);
+    if (gradeBalance !== 0) {
+        const tableArray = [];
+        STUDENTS.find({ grade }, { sort: { grade: 1 }, reactive: false }).forEach((student) => {
+            const balance = getTotalBalance({ studentID: student._id });
+            if (balance !== 0) {
+                const color = balance > 0 ? 'red' : 'green';
+                tableArray.push({
+                    student,
+                    balance,
+                    color
+                });
+            }
+        });
+        tableArray.sort((a, b) => b.balance - a.balance);
+        list += `
+            <br>
+            <div class="fifty">
+                <span class="tag">Grado: </span>
+                <span class="student">${grade}</span>
+            </div>
+            <br>
+            <table class="table table-striped fifty">
+                <thead>
+                    <tr>
+                        <th scope="col">Estudiante</th>
+                        <th scope="col">Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        tableArray.forEach((item) => {
+            list += `
+                <tr>
+                    <td class="student">${item.student.fullname}</td>
+                    <td style="color: ${item.color};">${item.balance.toLocaleString()}</td>
+                </tr>
+            `;
+        });
+        list += `
+                </tbody>
+            </table>
+            <hr class="fifty">
+        `;
+    }
+
+    return list;
+}
 
 function studentBalance(stringDate, student) {
     check(stringDate, String);
@@ -272,11 +333,12 @@ function allBalance(stringDate, queryType, gradeFilter) {
     } else if (queryType === 'grades') {
         if (gradeFilter.length > 0) {
             gradeFilter.forEach((grade) => {
-                list += balanceByGrade(grade);
+                list += balancesumarized(grade);
             });
         } else {
+            const GRADES = getGradeList(false);
             GRADES.forEach((grade) => {
-                list += balanceByGrade(grade);
+                list += balancesumarized(grade);
             });
         }
     }
@@ -305,5 +367,7 @@ function runBackups() {
 Meteor.methods({
     allBalance,
     studentBalance,
-    runBackups
+    runBackups,
+    getGradeList
 });
+export { getGradeList as default };

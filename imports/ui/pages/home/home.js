@@ -4,6 +4,7 @@ import '../../components/addCharge/addCharge.js';
 import '../../components/studentDetailHistory/studentDetailHistory.js';
 import '../../components/allReports/allReports.js';
 import '../../components/searchStudent/searchStudent.js';
+import '../../components/allStudents/allStudents.js';
 import { Blaze } from 'meteor/blaze';
 import { studentInfo } from '../../components/studentInfo.js';
 import { HISTORY } from '../../../startup/both/index.js';
@@ -29,6 +30,9 @@ Template.appHome.helpers({
         });
 
         return balance.toLocaleString();
+    },
+    studentList() {
+        return studentInfo.get();
     }
 });
 

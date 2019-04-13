@@ -10,7 +10,7 @@ function getName(elementID) {
 }
 
 function clearAllFields(templateInstance) {
-    const list = ['student-name', 'student-middle', 'student-last1', 'student-last2', 'student-grade'];
+    const list = ['student-fullname', 'student-grade', 'student-phone', 'student-email'];
     list.forEach((e) => {
         const field = document.getElementById(e);
         if (field !== null) {
@@ -34,27 +34,26 @@ Template.addStudent.events({
         }
     },
     'click button#student-save': (event, templateInstance) => {
-        const name = getName('student-name');
-        const middle = getName('student-middle');
-        const last1 = getName('student-last1');
-        const last2 = getName('student-last2');
+        const fullname = getName('student-fullname');
+        let phone = getName('student-phone');
+        let email = getName('student-email');
         const grade = document.getElementById('student-grade').value;
         const fieldset = event.currentTarget.closest('div.needs-validation');
-        if (name.length > 0
-            && last1.length > 0
+        phone = phone.length > 0 ? phone : undefined;
+        email = email.length > 0 ? email : undefined;
+
+        if (fullname.length > 0
             && grade.length > 0) {
             const wasFound = STUDENTS.findOne({
-                name,
-                middle,
-                last1,
-                last2
+                fullname,
+                grade
             });
+
             if (typeof wasFound === 'undefined') {
                 STUDENTS.insert({
-                    name,
-                    middle,
-                    last1,
-                    last2,
+                    fullname,
+                    phone,
+                    email,
                     grade
                 });
             }
@@ -71,12 +70,8 @@ Template.addStudent.events({
         clearAllFields(templateInstance);
         event.stopPropagation();
     }
-    // 'keyup input#student-search': (event, templateInstance) => {
-    //     const name = event.currentTarget.value;
-    //     Meteor.subscribe('studentsList', name);
-    // }
 });
 
 Template.addStudent.onRendered(function () {
-    this.find('input#student-name').focus();
+    this.find('input#student-fullname').focus();
 });

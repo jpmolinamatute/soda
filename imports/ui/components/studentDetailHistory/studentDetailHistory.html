@@ -23,33 +23,32 @@
                             </td>
                             {{#if editMode}}
                                 <td>
-                                    <input id="edit-datepicker" type="date" class="form-control"
-                                        value="{{onlyDate date}}" max="{{getToday}}" required>
+                                    <input name="datepicker" type="date" class="form-control"
+                                        value="{{filterDate date true}}" max="{{filterDate date true}}" required>
                                 </td>
                                 <td>
-                                    <input id="edit-item-concept" type="text" class="form-control" value="{{concept}}"
-                                        required>
+                                    <input name="concept" type="text" class="form-control" value="{{concept}}" required>
                                 </td>
                                 <td>
-                                    <label class="form-check-label" for="edit-type-charge">Gasto</label>
-                                    <input type="radio" id="edit-type-charge" name="edit-type" value="charge"
-                                        checked="{{isCharge charge}}">
+                                    <label class="form-check-label" for="edit-type-charge-{{_id}}">Gasto</label>
+                                    <input type="radio" id="edit-type-charge-{{_id}}" name="edit-type-{{_id}}"
+                                        value="charge" checked="{{isCharge charge}}">
                                     <br>
-                                    <label class="form-check-label" for="edit-type-pay">Pago</label>
-                                    <input type="radio" id="edit-type-pay" name="edit-type" value="pay"
+                                    <label class="form-check-label" for="edit-type-pay-{{_id}}">Pago</label>
+                                    <input type="radio" id="edit-type-pay-{{_id}}" name="edit-type-{{_id}}" value="pay"
                                         checked="{{isPay charge}}">
                                 </td>
                                 <td>
-                                    <input id="edit-item-charge" type="number" class="form-control" value="{{charge}}"
-                                        min="0" required>
+                                    <input name="charge" type="number" class="form-control" value="{{charge}}" required>
                                 </td>
+
                                 <td class="tdbutton">
                                     <button type="button" data-type="save" class="btn btn-default btn-sm">
                                         <i class="far fa-save"></i>
                                     </button>
                                 </td>
                             {{else}}
-                                <td class="date">{{filterDate date}}</td>
+                                <td class="date">{{filterDate date false}}</td>
                                 <td>{{concept}}</td>
                                 <td class="charge">{{filterCharge '+' charge}}</td>
                                 <td class="charge">{{filterCharge '-' charge}}</td>

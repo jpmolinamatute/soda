@@ -11,6 +11,68 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
 button:focus,
 textarea {
     outline: none !important;
@@ -57,6 +119,7 @@ div#right-panel {
 div#right-panel div.right-top {
     order: 1;
     flex: 1 1 auto;
+    overflow: hidden;
     padding: 15px;
     position: relative;
 }
@@ -138,7 +201,8 @@ div#student-history {
     z-index: 100;
     padding: 15px;
     width: 75%;
-    height: 100%; // flex-direction: column;
+    height: 100%;
+    flex-direction: column;
     border: 2px solid #000;
 }
 
@@ -148,16 +212,26 @@ h1#history-student-title {
     margin-bottom: 10px;
 }
 
+div#student-header {
+    height: 168px;
+    order: 1;
+}
+
+
 div#history-wrap td {
     word-wrap: break-word
 }
 
+div#history-wrap table tr.needs-validation {
+    height: 73px;
+}
+
 div#history-wrap table .charge {
-    width: 100px;
+    width: 150px;
 }
 
 div#history-wrap table .date {
-    width: 198px;
+    width: 200px;
 }
 
 div#history-wrap table .tdbutton {
@@ -183,15 +257,15 @@ button#item-date {
 }
 
 div#history-wrap {
-    order: 1;
-    flex: 1;
+    order: 2;
+    flex: 1 1 auto;
     overflow-y: auto;
 }
 
 div#student-history-controls {
-    order: 2;
+    order: 3;
     height: 50px;
-    flex-basis: 50px;
+    flex: 0 0 50px;
     position: relative;
 }
 
@@ -247,10 +321,44 @@ div#student-row span.tag {
     font-weight: bolder;
 }
 
+ul#all-students-list span,
+div#student-list span.name,
 div#student-row span.value {
     text-transform: capitalize;
 }
 
 select#report-filtered-grade {
     width: 150px;
+}
+
+
+
+div#all-students-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+div#all-students-container>div.list-right {
+    order: 1;
+    flex: 0 0 200px;
+}
+
+div#all-students-container>div.list-left {
+    order: 2;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    padding: 15px;
+}
+
+ul#all-students-list {
+    font-size: 20px;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    padding: 15px;
+}
+
+ul#all-students-list li {
+    padding-bottom: 5px;
 }

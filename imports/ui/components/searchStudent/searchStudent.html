@@ -7,6 +7,10 @@
             <i class="fas fa-backspace"></i>
         </button>
         {{> runbackup}}
+        <label class="switch">
+            <input type="checkbox" id="all-students" title="Mostrar Lista de Estudiantes">
+            <span class="slider round"></span>
+        </label>
     </div>
     <div class="form-group">
         <label for="search-student">Buscar</label>
@@ -19,12 +23,7 @@
                     <li>
                         <button type="button" data-id="{{_id}}" data-type="student" data-index="{{@index}}"
                             class="{{#if isActive @index}}active{{/if}}">
-                            <span class="name">
-                                {{{filter name 'yes'}}}
-                                {{{filter middle 'yes'}}}
-                                {{{filter last1 'yes'}}}
-                                {{{filter last2 'yes'}}}
-                            </span>
+                            <span class="name">{{fullname}} </span>
                             <span class="grade">{{grade}}</span>
                         </button>
                     </li>

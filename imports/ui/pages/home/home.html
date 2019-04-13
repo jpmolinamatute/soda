@@ -12,6 +12,10 @@
                         <i class="far fa-list-alt"></i>
                     </button>
                     {{> addCharge}}
+                {{else}}
+                    {{#if studentList}}
+                        {{> allstudents}}
+                    {{/if}}
                 {{/if}}
             </div>
             <div class="right-bottom">

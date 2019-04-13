@@ -1,0 +1,19 @@
+[Unit]
+Description=Soda's book
+After=network.target mongodb.service
+
+[Service]
+Type=simple
+User=web
+Group=web
+
+Environment=MONGO_URL='mongodb://soda:dev@naruto:57017/soda' PORT='3003' ROOT_URL='http://localhost:3003'
+RootDirectory=/web
+RootDirectoryStartOnly=true
+BindPaths=/usr
+ExecStart=/nodejs/bin/node /bundle/main.js
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

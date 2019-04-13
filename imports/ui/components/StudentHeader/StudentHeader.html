@@ -1,18 +1,20 @@
 <template name="studentheader">
-    <h1 id="history-student-title">
-        Informacion del Estudiante
-    </h1>
-    <div id="student-row">
-        {{#with student}}
-            <div class="student-info-left">
-                <span class="tag">Nombre: </span><span class="value">{{name}} {{middle}} {{last1}} {{last2}}</span><br>
-                <span class="tag">Grado: </span><span class="value">{{grade}}</span><br>
-                <span class="tag">Saldo: </span>{{{saldo}}}
-            </div>
-            <div class="student-info-right">
-                <span class="tag">Celular: </span><span class="value">{{phone}}</span><br>
-                <span class="tag">Correo Electronico: </span><span class="value">{{email}}</span>
-            </div>
-        {{/with}}
+    <div id="student-header">
+        <h1 id="history-student-title">
+            Informacion del Estudiante
+        </h1>
+        <div id="student-row">
+            {{#with student}}
+                <div class="student-info-left">
+                    <span class="tag">Nombre: </span><span class="value">{{fullname}}</span><br>
+                    <span class="tag">Grado: </span><span class="value">{{grade}}</span><br>
+                    <span class="tag">Saldo: </span>{{{saldo}}}
+                </div>
+                <div class="student-info-right">
+                    <span class="tag">Celular: </span><span class="value">{{phone}}</span><br>
+                    <span class="tag">Correo Electronico: </span><span class="value">{{email}}</span>
+                </div>
+            {{/with}}
+        </div>
     </div>
 </template>
