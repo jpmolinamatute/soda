@@ -1,6 +1,5 @@
 import './StudentHeader.html';
 import { studentInfo } from '../studentInfo.js';
-import { HISTORY } from '../../../startup/both/index.js';
 
 Template.studentheader.helpers({
     student() {
@@ -11,16 +10,14 @@ Template.studentheader.helpers({
         let html = '<span class="value" ';
 
         if (typeof student === 'object') {
-            let tmpTotal = 0;
-            HISTORY.find({ studentID: student._id }, { fields: { charge: 1 } }).forEach((doc) => {
-                tmpTotal += doc.charge;
-            });
-            if (tmpTotal > 0) {
+            const balance = student.balance;
+
+            if (balance > 0) {
                 html += 'style="color: red;"';
-            } else if (tmpTotal < 0) {
+            } else if (balance < 0) {
                 html += 'style="color: green;"';
             }
-            html += `> ${tmpTotal.toLocaleString()}`;
+            html += `> ${balance.toLocaleString()}`;
         } else {
             html += '>';
         }

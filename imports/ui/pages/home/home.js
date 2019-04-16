@@ -31,6 +31,10 @@ Template.appHome.helpers({
 
         return balance.toLocaleString();
     },
+    disableHistory() {
+        const student = studentInfo.get();
+        return student.balance === 0;
+    },
     studentList() {
         return studentInfo.get();
     }

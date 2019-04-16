@@ -8,7 +8,7 @@
                 {{#if displayStudent}}
                     {{> studentheader}}
                     <button id="display-student-history" type="button" class="btn btn-primary btn-md"
-                        title="Historial del Alumno">
+                        title="Historial del Alumno" disabled="{{disableHistory}}">
                         <i class="far fa-list-alt"></i>
                     </button>
                     {{> addCharge}}

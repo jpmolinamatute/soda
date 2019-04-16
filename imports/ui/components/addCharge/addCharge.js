@@ -1,6 +1,6 @@
 import './addCharge.html';
 import { HISTORY, filterDate } from '../../../startup/both/index.js';
-import { studentInfo } from '../studentInfo.js';
+import { studentInfo, setStudentInfo } from '../studentInfo.js';
 
 
 function saveCharge(event) {
@@ -33,6 +33,8 @@ function saveCharge(event) {
             charge: chargenum,
             concept: concept.value,
             editMode: false
+        }, () => {
+            setStudentInfo(student._id);
         });
 
         charge.value = '';

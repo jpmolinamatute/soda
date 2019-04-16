@@ -33,7 +33,6 @@
                                     <label class="form-check-label" for="edit-type-charge-{{_id}}">Gasto</label>
                                     <input type="radio" id="edit-type-charge-{{_id}}" name="edit-type-{{_id}}"
                                         value="charge" checked="{{isCharge charge}}">
-                                    <br>
                                     <label class="form-check-label" for="edit-type-pay-{{_id}}">Pago</label>
                                     <input type="radio" id="edit-type-pay-{{_id}}" name="edit-type-{{_id}}" value="pay"
                                         checked="{{isPay charge}}">
@@ -41,7 +40,6 @@
                                 <td>
                                     <input name="charge" type="number" class="form-control" value="{{charge}}" required>
                                 </td>
-
                                 <td class="tdbutton">
                                     <button type="button" data-type="save" class="btn btn-default btn-sm">
                                         <i class="far fa-save"></i>

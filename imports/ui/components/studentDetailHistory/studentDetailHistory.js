@@ -44,9 +44,8 @@ Template.studentdetailhistory.helpers({
     history() {
         let cursor = false;
         const student = studentInfo.get();
-        const total = Template.instance().total.get();
         if (typeof student === 'object'
-            && total !== 0) {
+            && student.balance !== 0) {
             cursor = HISTORY.find({ studentID: student._id }, { sort: { date: 1 } });
         }
 
@@ -59,30 +58,32 @@ Template.studentdetailhistory.helpers({
         return charge < 0;
     },
     filterCharge(sign, charge) {
-        let label = ' - ';
-        if ((charge > 0 && sign === '+') || (charge < 0 && sign === '-')) {
+        let label = ' ';
+        if (charge > 0 && sign === '+') {
             label = charge.toLocaleString();
+        } else if (charge < 0 && sign === '-') {
+            label = (charge * -1).toLocaleString();
         }
         return label;
     },
     totalColor() {
-        const total = Template.instance().total.get();
+        const student = studentInfo.get();
         let result = 'black';
-        if (total > 0) {
+        if (student.balance > 0) {
             result = 'red';
-        } else if (total < 0) {
+        } else if (student.balance < 0) {
             result = 'green';
         }
         return result;
     },
     totalString() {
         let result;
-        const total = Template.instance().total.get();
+        const student = studentInfo.get();
 
-        if (total > 0) {
-            result = `Debe ${total.toLocaleString()} Colones`;
-        } else if (total < 0) {
-            result = `Tiene un saldo a su favor de  ${(total * -1).toLocaleString()} Colones`;
+        if (student.balance > 0) {
+            result = `Debe ${student.balance.toLocaleString()} Colones`;
+        } else if (student.balance < 0) {
+            result = `Tiene un saldo a su favor de  ${(student.balance * -1).toLocaleString()} Colones`;
         } else {
             result = 'Tiene un balance en 0';
         }
@@ -117,7 +118,8 @@ Template.studentdetailhistory.events({
         const stringDate = filterDate(false, false);
         const student = studentInfo.get();
         if (typeof student === 'object') {
-            Meteor.call('studentBalance', stringDate, student, (error, htmlString) => {
+            //             ', stringDate, reportType, InputSelectValue
+            Meteor.call('studentReport', stringDate, student, (error, htmlString) => {
                 if (error) {
                     console.error(error);
                 } else {
@@ -134,22 +136,6 @@ Template.studentdetailhistory.events({
         }
         event.stopPropagation();
     }
-});
-
-Template.studentdetailhistory.onCreated(function historyonCreated() {
-    this.total = new ReactiveVar(0);
-    this.autorun(() => {
-        const student = studentInfo.get();
-        if (typeof student === 'object') {
-            this.subscribe('history', student._id, () => {
-                let tmpTotal = 0;
-                HISTORY.find({ studentID: student._id }, { fields: { charge: 1 } }).forEach((doc) => {
-                    tmpTotal += doc.charge;
-                });
-                this.total.set(tmpTotal);
-            });
-        }
-    });
 });
 
 Template.studentdetailhistory.onRendered(function studentdetailhistoryonRendered() {
