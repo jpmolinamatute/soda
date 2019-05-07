@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 BACKUPDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)/backups"
 historyjson="$BACKUPDIR/history $(date +"%F %r").json"
 studentjson="$BACKUPDIR/students $(date +"%F %r").json"
@@ -15,6 +17,14 @@ if [[ -f $studentjson ]]; then
 fi
 
 echo "Exporting $studentjson"
-mongoexport --uri=mongodb://soda:dev@naruto:57017/soda -c students -o "$studentjson" --jsonArray --pretty
+# if ! command -v bc &>/dev/null; then
+if ! mongoexport --uri=mongodb://soda:dev@naruto:57017/soda -c students -o "$studentjson" --jsonArray --pretty; then
+    echo "Error: exporting students collection failed" >&2
+    exit 2
+fi
 echo "Exporting $historyjson"
-mongoexport --uri=mongodb://soda:dev@naruto:57017/soda -c history -o "$historyjson" --jsonArray --pretty
+if ! mongoexport --uri=mongodb://soda:dev@naruto:57017/soda -c history -o "$historyjson" --jsonArray --pretty; then
+    echo "Error: exporting students collection failed" >&2
+    exit 2
+fi
+exit 0
