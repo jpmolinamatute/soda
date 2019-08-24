@@ -8,7 +8,7 @@ function runBackups() {
     this.unblock();
     if (isBackupReady) {
         isBackupReady = false;
-        exec('/home/juanpa/Projects/soda/private/export', (error, stdout, stderr) => {
+        exec('/web/backup/export', (error, stdout, stderr) => {
             if (error === null) {
                 isBackupReady = true;
             }
@@ -486,7 +486,6 @@ function filterHTML(html) {
 async function getReport(stringDate, reportType, gradeFilter) {
     check(stringDate, String);
     check(reportType, String);
-    console.log('---------------------------------');
 
     const { header, footer } = getReportHeaderFooter(reportType, stringDate, gradeFilter);
     let html = header;

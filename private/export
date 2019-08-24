@@ -2,7 +2,7 @@
 
 set -e
 
-BACKUPDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)/backups"
+BACKUPDIR="$(dirname "${BASH_SOURCE[0]}")"
 historyjson="$BACKUPDIR/history $(date +"%F %r").json"
 studentjson="$BACKUPDIR/students $(date +"%F %r").json"
 
