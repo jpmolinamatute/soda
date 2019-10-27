@@ -139,11 +139,6 @@ div#right-panel div.right-bottom>div.form-inline {
     height: 117px;
 }
 
-
-input#top-number {
-    width: 100px;
-}
-
 div#add-student {
     width: 25%;
     background-color: #A9A9A9;
@@ -378,4 +373,62 @@ ul#all-students-list {
 
 ul#all-students-list li {
     padding-bottom: 5px;
+}
+
+div#report-container{
+    width: 100%;
+    height: 160px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+div#report-list {
+    order: 1;
+    flex-basis: 350px;
+    border: 2px solid;
+}
+
+div#report-list > div.form-check {
+    margin-left: 15px;
+}
+
+div#report-container > div.form-group,
+div#closing-param {
+    order: 2;
+    align-self: center;
+    width: 150px;
+    margin-bottom: 0;
+}
+
+
+div#closing-param{
+    display: inline-flex;
+}
+
+div#closing-param > div.form-group:first-child{
+    width: 55px;
+    order: 1;
+    margin-bottom: 0;
+}
+
+div#closing-param > div.form-group:first-child input{
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+div#closing-param > div.form-group:nth-child(2){
+    width: 95px;
+    order: 2;
+    margin-bottom: 0;
+}
+
+div#closing-param > div.form-group:nth-child(2) select{
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+button#print-all-history {
+    order: 3;
 }

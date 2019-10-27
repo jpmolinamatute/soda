@@ -1,33 +1,58 @@
 <template name="allreports">
-    <div class="form-inline">
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="report-type" id="student-report" value="students"
-                checked>
-            <label class="form-check-label" for="student-report">
-                Detalle
-            </label>
+    <div id="report-container">
+        <div id="report-list" class="form-inline">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="report-type" id="student-report" value="students"
+                    checked>
+                <label class="form-check-label" for="student-report">
+                    Detalle
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="report-type" id="grade-report" value="grades">
+                <label class="form-check-label" for="grade-report">
+                    Resumen
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="report-type" id="top-report" value="top">
+                <label class="form-check-label" for="top-report">
+                    Top
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="report-type" id="closing-report" value="closing">
+                <label class="form-check-label" for="closing-report">
+                    Cierre
+                </label>
+            </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="report-type" id="grade-report" value="grades">
-            <label class="form-check-label" for="grade-report">
-                Resumen
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="report-type" id="top-report" value="top">
-            <label class="form-check-label" for="top-report">
-                Top
-            </label>
-        </div>
-        {{#if studentGrade}}
+        {{#if isGrade}}
             {{> gradelist multiple=true required=false tagid="report-filtered-grade"}}
         {{else}}
-            <div class="form-group">
-                <input class="form-control" type="number" id="top-number" min="0" value="5">
-            </div>
+            {{#if isTop}}
+                <div class="form-group">
+                    <input class="form-control" type="number" id="top-number" min="0" value="5">
+                </div>
+            {{else}}
+                {{#if isClosing}}
+                    <div id="closing-param">
+                        <div class="form-group">
+                            <input class="form-control" type="number" id="closing-number" min="0" value="1">
+                        </div>
+                        <div class="form-group">
+                            <select id="closing-type" class="form-control">
+                                <option value="h" selected>Hora</option>
+                                <option value="d">Dia</option>
+                                <option value="m">Mes</option>
+                            </select>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/if}}
         {{/if}}
         <button id="print-all-history" type="button" class="btn btn-primary btn-md"
-            title="Descargar historial de todos los estudiantes">
+            title="Descarga el reporte seleccionado">
             <i class="fas fa-cloud-download-alt"></i>
         </button>
     </div>

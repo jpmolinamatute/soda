@@ -20,8 +20,8 @@ function saveCharge(event) {
         const inputDay = parseInt(arrayDate[2], 10);
         const inputMonth = parseInt(arrayDate[1], 10);
         const inputYear = parseInt(arrayDate[0], 10);
-        const date = new Date(inputYear, inputMonth - 1, inputDay, 0, 0, 0, 0);
-
+        const time = new Date();
+        const date = new Date(inputYear, inputMonth - 1, inputDay, time.getHours());
         let chargenum = parseInt(charge.value, 10);
 
         if (type === 'pay') {

@@ -18,6 +18,7 @@ function runBackups() {
         });
     }
 }
+
 function sortSecundaria(a, b) {
     const numA = parseInt(a, 10);
     const numB = parseInt(b, 10);
@@ -88,7 +89,7 @@ function getHistoryAggregate() {
 function getPipeline(reportType, criteria) {
     let pipeline = false;
 
-    if (reportType === 'detail' || reportType === 'summary') {
+    if (reportType === 'students' || reportType === 'grades') {
         const group = { $group: { _id: '$studentID', balance: { $sum: '$charge' } } };
         const match2 = { $match: { balance: { $ne: 0 } } };
         pipeline = [];
@@ -113,14 +114,38 @@ function getPipeline(reportType, criteria) {
         const match1 = { $match: { studentID: criteria } };
         const group = { $group: { _id: '$studentID', balance: { $sum: '$charge' } } };
         pipeline = [match1, group];
-    }
+    } else if (reportType === 'closing' && typeof criteria === 'string') {
+        const info = JSON.parse(criteria);
+        const today = new Date(info.date);
+        let difference;
 
+        if (info.type === 'h') {
+            difference = 3600000 * info.num;
+        } else if (info.type === 'd') {
+            difference = 86400000 * info.num;
+        } else if (info.type === 'm') {
+            difference = 2592000000 * info.num;
+        }
+        const closing = new Date(info.date - difference);
+        const match1 = {
+            $match: {
+                date: {
+                    $lte: today,
+                    $gte: closing
+                }
+            }
+        };
+        const group = { $group: { _id: '$studentID', balance: { $sum: '$charge' } } };
+        const match2 = { $match: { balance: { $gt: 0 } } };
+        pipeline = [match1, group, match2];
+    }
     return pipeline;
 }
 
-async function getTotalBalance(reportType, info) {
+async function getTotalBalance(reportType, reportValues, ids) {
+    const criteria = Array.isArray(ids) ? ids : reportValues;
     const aggregateQuery = getHistoryAggregate();
-    const pipeline = getPipeline(reportType, info);
+    const pipeline = getPipeline(reportType, criteria);
     const result = aggregateQuery(pipeline, { cursor: {} });
     return result.toArray();
 }
@@ -129,14 +154,34 @@ function getReportHeaderFooter(reportType, stringDate, gradeFilter) {
     let gradesInList = '';
     let title;
     switch (reportType) {
-        case 'detail':
+        case 'students':
             title = '<h5>Reporte detallado</h5>';
             break;
-        case 'summary':
+        case 'grades':
             title = '<h5>Reporte resumido</h5>';
             break;
         case 'top':
             title = `<h5>Reporte top ${gradeFilter}</h5>`;
+            break;
+        case 'closing':
+            const filter = JSON.parse(gradeFilter);
+            if (filter.num === 1) {
+                if (filter.type === 'h') {
+                    title = '<h5>Ultima Hora</h5>';
+                } else if (filter.type === 'd') {
+                    title = '<h5>Ultimo Dia</h5>';
+                } else if (filter.type === 'm') {
+                    title = '<h5>Ultimo Mes</h5>';
+                }
+            } else if (filter.num > 1) {
+                if (filter.type === 'h') {
+                    title = `<h5>Ultimas ${filter.num} Horas </h5>`;
+                } else if (filter.type === 'd') {
+                    title = `<h5>Ultimos ${filter.num} Dias</h5>`;
+                } else if (filter.type === 'm') {
+                    title = `<h5>Ultimos ${filter.num} Meses</h5>`;
+                }
+            }
             break;
         case 'singleStudent':
             title = `<h5>Reporte de <span class="student">${gradeFilter}</span></h5>`;
@@ -219,7 +264,7 @@ function getReportHeaderFooter(reportType, stringDate, gradeFilter) {
 function getSubtableBody(reportType, data) {
     let body = '<tbody>';
 
-    if (reportType === 'detail' || reportType === 'singleStudent') {
+    if (reportType === 'students' || reportType === 'singleStudent') {
         data.forEach((doc) => {
             body += `
             <tr>
@@ -241,22 +286,24 @@ function getSubtableBody(reportType, data) {
 
             body += '</tr>';
         });
-    } else if (reportType === 'summary') {
+    } else if (reportType === 'grades') {
         data.forEach((doc) => {
             body += `
             <tr>
                 <td class="student">${doc.fullname}</td>
-                <td style="color: ${doc.balance < 0 ? 'green' : 'red'};">${doc.balance.toLocaleString()}</td>
+                <td class="aligned-right" style="color: ${doc.balance < 0 ? 'green' : 'red'};">
+                    ${doc.balance.toLocaleString()}
+                </td>
             </tr>
             `;
         });
-    } else if (reportType === 'top') {
+    } else if (reportType === 'top' || reportType === 'closing') {
         data.forEach((doc) => {
             body += `
             <tr>
                 <td class="student">${doc.fullname}</td>
                 <td>${doc.grade}</td>
-                <td>${doc.balance.toLocaleString()}</td>
+                <td class="aligned-right">${doc.balance.toLocaleString()}</td>
             </tr>
             `;
         });
@@ -268,7 +315,7 @@ function getSubtableBody(reportType, data) {
 
 function getSubtableHeader(reportType, data) {
     let head = '';
-    if (reportType === 'detail') {
+    if (reportType === 'students') {
         head += `
             <br>
             <span class="tag">Estudiante: </span>
@@ -287,7 +334,7 @@ function getSubtableHeader(reportType, data) {
                     </tr>
                 </thead>
         `;
-    } else if (reportType === 'summary') {
+    } else if (reportType === 'grades') {
         head += `
             <br>
             <div class="fifty">
@@ -299,11 +346,11 @@ function getSubtableHeader(reportType, data) {
                 <thead>
                     <tr>
                         <th scope="col">Estudiante</th>
-                        <th scope="col">Balance</th>
+                        <th scope="col" class="aligned-right">Balance</th>
                     </tr>
                 </thead>
         `;
-    } else if (reportType === 'top') {
+    } else if (reportType === 'top' || reportType === 'closing') {
         head += `
             <br>
             <table class="table table-striped fifty">
@@ -311,7 +358,7 @@ function getSubtableHeader(reportType, data) {
                     <tr>
                         <th scope="col">Estudiante</th>
                         <th scope="col">Grado</th>
-                        <th scope="col">Balance</th>
+                        <th scope="col" class="aligned-right">Balance</th>
                     </tr>
                 </thead>
         `;
@@ -339,7 +386,7 @@ function getSubtableHeader(reportType, data) {
 function getSubtableFooter(reportType, balance) {
     let foot = '';
 
-    if (reportType === 'detail' || reportType === 'singleStudent') {
+    if (reportType === 'students' || reportType === 'singleStudent') {
         let balanceStr;
         let color;
         if (balance < 0) {
@@ -359,13 +406,25 @@ function getSubtableFooter(reportType, balance) {
             </table>
             <hr style="width: 100%;">
         `;
-    } else if (reportType === 'summary') {
+    } else if (reportType === 'grades') {
         foot += `
+                    <tfoot>
+                    <tr>
+                        <td colspan="2" class="aligned-right" style="color: red;">${balance.toLocaleString()}</td>
+                    </tr>
+                </tfoot>
             </table>
             <hr class="fifty">
         `;
-    } else if (reportType === 'top') {
-        foot += '</table>';
+    } else if (reportType === 'top' || reportType === 'closing') {
+        foot += `
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="aligned-right" style="color: red;">${balance.toLocaleString()}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        `;
     }
 
 
@@ -387,18 +446,19 @@ function getSubtable(reportType, content, headFootInfo = {}) {
 function getContent(reportType, dataList) {
     let list = '';
 
-    if (reportType === 'detail') {
+    if (reportType === 'students') {
         dataList.forEach((student) => {
             const content = HISTORY.find({ studentID: student._id }, { sort: { date: 1 } }).fetch();
             list += getSubtable(reportType, content, student);
         });
-    } else if (reportType === 'summary') {
+    } else if (reportType === 'grades') {
         let content;
         let reference;
-
+        let balance;
         dataList.forEach((student) => {
             if (reference !== student.grade) {
                 if (typeof reference === 'string') {
+                    balance = 0;
                     content.sort((a, b) => {
                         let valid = 0;
                         if (a.fullname < b.fullname) {
@@ -408,14 +468,19 @@ function getContent(reportType, dataList) {
                         }
                         return valid;
                     });
-
-                    list += getSubtable(reportType, content, { grade: reference });
+                    content.forEach((doc) => {
+                        balance += doc.balance;
+                    });
+                    list += getSubtable(reportType, content, { grade: reference, balance });
                 }
                 reference = student.grade;
                 content = [];
             }
             content.push(student);
         });
+
+        // This is for the last element in the array
+        balance = 0;
         content.sort((a, b) => {
             let valid = 0;
             if (a.fullname < b.fullname) {
@@ -425,30 +490,40 @@ function getContent(reportType, dataList) {
             }
             return valid;
         });
-        list += getSubtable(reportType, content, { grade: reference });
-    } else if (reportType === 'top') {
-        list += getSubtable(reportType, dataList);
+        content.forEach((doc) => {
+            balance += doc.balance;
+        });
+        list += getSubtable(reportType, content, { grade: reference, balance });
+    } else if (reportType === 'top' || reportType === 'closing') {
+        let balance = 0;
+        dataList.forEach((doc) => {
+            balance += doc.balance;
+        });
+        list += getSubtable(reportType, dataList, { balance });
     }
 
     return list;
 }
 
 function getStudentList(gradeFilter) {
-    const query = {};
-    const studentList = [];
-    let ids = false;
+    let studentList;
+    let ids;
+
     if (Array.isArray(gradeFilter)
         && gradeFilter.length > 0) {
+        const query = {};
         ids = [];
+        studentList = [];
         query.grade = { $in: gradeFilter };
+        STUDENTS.find(query, { sort: { grade: 1, fullname: 1 } }).forEach((doc) => {
+            ids.push(doc._id);
+            studentList.push(doc);
+        });
+    } else {
+        ids = false;
+        studentList = STUDENTS.find({}, { sort: { grade: 1, fullname: 1 } }).fetch();
     }
 
-    STUDENTS.find(query, { sort: { grade: 1, fullname: 1 } }).forEach((doc) => {
-        if (Array.isArray(ids)) {
-            ids.push(doc._id);
-        }
-        studentList.push(doc);
-    });
 
     return { studentList, ids };
 }
@@ -462,7 +537,7 @@ function mergeBalanceStudents(reportType, balanceArray, studentList) {
         return student;
     });
 
-    if (reportType === 'detail' || reportType === 'summary') {
+    if (reportType === 'students' || reportType === 'grades') {
         outputArray.sort((a, b) => {
             let valid = 0;
             if (a.grade < b.grade) {
@@ -483,15 +558,14 @@ function filterHTML(html) {
     return filtered.replace(/ {2,}/g, ' ');
 }
 
-async function getReport(stringDate, reportType, gradeFilter) {
+async function getReport(stringDate, reportType, reportValues) {
     check(stringDate, String);
     check(reportType, String);
 
-    const { header, footer } = getReportHeaderFooter(reportType, stringDate, gradeFilter);
+    const { header, footer } = getReportHeaderFooter(reportType, stringDate, reportValues);
     let html = header;
-    const { studentList, ids } = getStudentList(gradeFilter);
-    const criteria = reportType === 'detail' || reportType === 'summary' ? ids : gradeFilter;
-    const balanceArray = await getTotalBalance(reportType, criteria);
+    const { studentList, ids } = getStudentList(reportValues);
+    const balanceArray = await getTotalBalance(reportType, reportValues, ids);
     const mergedBalStu = mergeBalanceStudents(reportType, balanceArray, studentList);
     html += getContent(reportType, mergedBalStu);
     html += footer;
