@@ -1,3 +1,7 @@
+/* global
+db: false
+*/
+
 const list = [
     'abigail',
     'andre',
