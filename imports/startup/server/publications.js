@@ -10,7 +10,7 @@ STUDENTS.allow({
     insert(id, doc) {
         const validGrade = Match.Where((x) => {
             check(x, String);
-            const isGrade = /(^[0-9]{1,2}[A-C]$)|P|PK|K/;
+            const isGrade = /(^[0-9]{1,2}[A-C]$)|P[A-C]|PK[A-C]|K[A-C]/;
 
             return isGrade.test(x);
         });

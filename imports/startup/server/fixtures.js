@@ -46,8 +46,8 @@ function getGradeList(divided) {
         reactive: false
     });
     if (divided) {
-        const regexPrimaria = /^[0-6][A-C]$/;
-        const regexSecundaria = /^[7-9][A-C]$|^1[0-2][A-C]$/;
+        const regexPrimaria = /^[0-6][A-D]$/;
+        const regexSecundaria = /^[7-9][A-D]$|^1[0-2][A-D]$/;
         const regexPrescolar = /^P$|^PK$|^K$/;
         list = {
             prescolar: [],
@@ -383,9 +383,10 @@ function getSubtableHeader(reportType, data) {
     return head;
 }
 
-function getSubtableFooter(reportType, balance) {
+function getSubtableFooter(reportType, headFootInfo) {
     let foot = '';
-
+    const balance = typeof headFootInfo.balance === 'number' ? headFootInfo.balance : 0;
+    const grandTotal = typeof headFootInfo.grandTotal === 'number' ? headFootInfo.grandTotal : false;
     if (reportType === 'students' || reportType === 'singleStudent') {
         let balanceStr;
         let color;
@@ -410,12 +411,23 @@ function getSubtableFooter(reportType, balance) {
         foot += `
                     <tfoot>
                     <tr>
-                        <td colspan="2" class="aligned-right" style="color: red;">${balance.toLocaleString()}</td>
+                        <td colspan="2" class="aligned-right">
+                            Sub-Total ${balance.toLocaleString()}
+                        </td>
                     </tr>
                 </tfoot>
             </table>
             <hr class="fifty">
         `;
+        if (typeof grandTotal === 'number') {
+            foot += `
+                <div class="fifty">
+                    <h3 style="text-align: right; margin-top: 15px; margin-right: 6px;">
+                        Gran Total: ${grandTotal}
+                    </h3>
+                </div>
+            `;
+        }
     } else if (reportType === 'top' || reportType === 'closing') {
         foot += `
                 <tfoot>
@@ -434,7 +446,7 @@ function getSubtableFooter(reportType, balance) {
 function getSubtable(reportType, content, headFootInfo = {}) {
     const tableHeader = getSubtableHeader(reportType, headFootInfo);
     const tableBody = getSubtableBody(reportType, content);
-    const tableFooter = getSubtableFooter(reportType, headFootInfo.balance);
+    const tableFooter = getSubtableFooter(reportType, headFootInfo);
 
     return `
         ${tableHeader}
@@ -455,6 +467,7 @@ function getContent(reportType, dataList) {
         let content;
         let reference;
         let balance;
+        let grandTotal = 0;
         dataList.forEach((student) => {
             if (reference !== student.grade) {
                 if (typeof reference === 'string') {
@@ -470,6 +483,7 @@ function getContent(reportType, dataList) {
                     });
                     content.forEach((doc) => {
                         balance += doc.balance;
+                        grandTotal += doc.balance;
                     });
                     list += getSubtable(reportType, content, { grade: reference, balance });
                 }
@@ -491,9 +505,10 @@ function getContent(reportType, dataList) {
             return valid;
         });
         content.forEach((doc) => {
+            grandTotal += doc.balance;
             balance += doc.balance;
         });
-        list += getSubtable(reportType, content, { grade: reference, balance });
+        list += getSubtable(reportType, content, { grade: reference, balance, grandTotal });
     } else if (reportType === 'top' || reportType === 'closing') {
         let balance = 0;
         dataList.forEach((doc) => {

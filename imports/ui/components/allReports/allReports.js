@@ -20,7 +20,7 @@ function getSelectValues(select) {
 
 Template.allreports.events({
     'click button#print-all-history': (event, templateInstance) => {
-        const reportType = templateInstance.studentgrade.get();
+        const reportType = templateInstance.reportType.get();
         const stringDate = filterDate(false, false);
         let reportValue;
         let elem1;
@@ -54,7 +54,7 @@ Template.allreports.events({
                     mywindow.document.write(htmlString);
                     mywindow.document.close();
                     mywindow.focus();
-
+                    templateInstance.reportType.set(false);
                     if (reportType === 'students' || reportType === 'grades') {
                         elem1.value = '';
                     } else if (reportType === 'top') {
@@ -73,25 +73,23 @@ Template.allreports.events({
     'change input[name="report-type"]': (event, templateInstance) => {
         const value = event.currentTarget.value;
 
-        templateInstance.studentgrade.set(value);
+        templateInstance.reportType.set(value);
     }
 });
 
 Template.allreports.helpers({
     isGrade() {
-        const value = Template.instance().studentgrade.get();
+        const value = Template.instance().reportType.get();
         return value === 'students' || value === 'grades';
     },
-    isTop() {
-        const value = Template.instance().studentgrade.get();
-        return value === 'top';
+    isReportChecked(reportType) {
+        return Template.instance().reportType.get() === reportType;
     },
-    isClosing() {
-        const value = Template.instance().studentgrade.get();
-        return value === 'closing';
+    isButtonDisable() {
+        return !Template.instance().reportType.get();
     }
 });
 
 Template.allreports.onCreated(function allreportsonCreated() {
-    this.studentgrade = new ReactiveVar('students');
+    this.reportType = new ReactiveVar(false);
 });

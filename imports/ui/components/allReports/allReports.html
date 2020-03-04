@@ -3,39 +3,42 @@
         <div id="report-list" class="form-inline">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="report-type" id="student-report" value="students"
-                    checked>
+                    checked="{{#if isReportChecked 'students'}}checked{{/if}}">
                 <label class="form-check-label" for="student-report">
                     Detalle
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="report-type" id="grade-report" value="grades">
+                <input class="form-check-input" type="radio" name="report-type" id="grade-report" value="grades"
+                    checked="{{#if isReportChecked 'grades'}}checked{{/if}}">
                 <label class="form-check-label" for="grade-report">
                     Resumen
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="report-type" id="top-report" value="top">
+                <input class="form-check-input" type="radio" name="report-type" id="top-report" value="top"
+                    checked="{{#if isReportChecked 'top'}}checked{{/if}}">
                 <label class="form-check-label" for="top-report">
                     Top
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="report-type" id="closing-report" value="closing">
+            <!-- <div class="form-check">
+                <input class="form-check-input" type="radio" name="report-type" id="closing-report" value="closing"
+                    checked="{{#if isReportChecked 'closing'}}checked{{/if}}">
                 <label class="form-check-label" for="closing-report">
                     Cierre
                 </label>
-            </div>
+            </div> -->
         </div>
         {{#if isGrade}}
             {{> gradelist multiple=true required=false tagid="report-filtered-grade"}}
         {{else}}
-            {{#if isTop}}
+            {{#if isReportChecked 'top'}}
                 <div class="form-group">
                     <input class="form-control" type="number" id="top-number" min="0" value="5">
                 </div>
             {{else}}
-                {{#if isClosing}}
+                {{#if isReportChecked 'closing'}}
                     <div id="closing-param">
                         <div class="form-group">
                             <input class="form-control" type="number" id="closing-number" min="0" value="1">
@@ -52,7 +55,7 @@
             {{/if}}
         {{/if}}
         <button id="print-all-history" type="button" class="btn btn-primary btn-md"
-            title="Descarga el reporte seleccionado">
+            title="Descarga el reporte seleccionado" disabled="{{isButtonDisable}}">
             <i class="fas fa-cloud-download-alt"></i>
         </button>
     </div>

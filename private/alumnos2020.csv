@@ -1,0 +1,675 @@
+_id.string(),fullname.string(),grade.string()
+2017009,blanco araya daniel,3B
+2015080,böcker paniagua matthew,3B
+2015047,bolaños castellón ignacio,3B
+2017012,díaz quesada sofía constanza,3B
+2019178,feng feng heydeen,3B
+2015018,fervoy ruiz luna,3B
+2017081,hidalgo camacho lara,3B
+2017020,mack alvarado sebastián,3B
+2016044,mesén méndez amanda,3B
+2017001,mora carranza juan ignacio,3B
+2014019,oviedo ugalde josé miguel,3B
+2016101,rosales álvarez victoria,3B
+2015031,soto wittmann ernesto,3B
+2016051,truque rivera gonzalo josé,3B
+2014026,ulloa tapia jorge isaac,3B
+2017071,viveros pérez alisson tatiana,3B
+2015053,aguilar ramos mariana,3A
+2016019,alfaro monge amelia,3A
+2016039,alvarado gómez juan josé,3A
+2015052,blanco sancho julián,3A
+2014072,cedeño vargas sofía victoria,3A
+2016103,guillén paniagua christiam markus,3A
+2017027,hidalgo cambronero derek,3A
+2015014,kinderson méndez antonio,3A
+2016102,marín sánchez santiago,3A
+2018118,matamoros vargas denisse,3A
+2015045,porras flores jimena,3A
+2016035,richmond sánchez daniela,3A
+2013100,salgado byers lia elise,3A
+2020084,soto bonilla camila,3A
+2016012,torres camacho santiago,3A
+2012121,vargas fallas jeffry,3A
+2016053,wu henríquez samuel andrés,3A
+2011031,arley coe felipe andrés,6C
+2016042,bolaños allón sofía,6C
+2012046,bravo monge jimena,6C
+2011064,campos lópez alejandro,6C
+2018123,fonseca cruz óscar miguel,6C
+2013012,garcía arce isabel,6C
+2010026,gowty porras rebecca helen,6C
+2019203,hodgson fernández jaydan,6C
+2018137,martínez calvo franco,6C
+2013017,matteucci salazar isabella,6C
+2012099,mussio blanco sebastián,6C
+2010116,parada alfaro sofía,6C
+2010095,rojas hernández jorge antonio,6C
+2013104,salazar granados sofía,6C
+2010053,solano callaci luciana maría,6C
+2011071,vargas chaves juan manuel,6C
+2011087,víquez arguedas andrés,6C
+2019191,abril madrigal santiago,6B
+2019102,arce mesén viviana,6B
+2019187,artavia trejos ignacio,6B
+2011013,brusó ramírez flavio,6B
+2012094,carballo ramírez sebastián,6B
+2010096,cedeño vargas ana lucía,6B
+2013011,garcía arce emma,6B
+2019190,lópez argûello saúl,6B
+2013062,matamoros vindas julián,6B
+2012085,montero álvarez josé pablo,6B
+2019083,murillo beeche luciana,6B
+2014039,navarro meza saúl armando,6B
+2012010,pizarro camacho isabella maría,6B
+2012101,qiang yin alejandro david,6B
+2013077,solano herrera gabriel,6B
+2014028,vargas acuña daniela,6B
+2020060,araya hernandez alina,6A
+2013006,arias wang isabel,6A
+2020088,chen chen jiayi,6A
+2015071,fallas monge álvaro josé,6A
+2019179,feng feng heneen,6A
+2014081,gonzález vargas luciana maría,6A
+2014045,guzmán castillo jimena,6A
+2018161,he li edison,6A
+2018151,hernández mora gabriel,6A
+2013018,hess castro edgar alberto,6A
+2019195,lópez cordero sarah,6A
+2011005,muñoz murillo amanda,6A
+2012063,sáenz vargas nicolás,6A
+2011047,succar aragón santiago,6A
+2012024,torelli arguedas jean paul,6A
+2012015,umaña ramírez maría josé,6A
+2014082,víquez brenes ronald andrés,6A
+2012027,zuñiga meléndez ignacio,6A
+2020057,adkins gonzalez sarah,2C
+2019107,araya castro santiago,2C
+2020061,araya hernandez emma,2C
+2016045,dam hoover elena,2C
+2016031,delgado garcía mariana,2C
+2018105,garita vargas jimena,2C
+2016017,guerrero coto gabriel,2C
+2019183,hidalgo chaves sofía,2C
+2019189,kohl mayorga ian,2C
+2015038,montero solís isabella,2C
+2018147,moya arroyo sebastián,2C
+2018130,pezo ugarte andrés,2C
+2015030,picado chaves luciana maría,2C
+2016029,robles leiva fabián,2C
+2016052,saborío umaña ernesto santiago,2C
+2017025,sánchez briones nathalia,2C
+2019077,acón mora sara,2B
+2017067,arguedas cavallini gabriel,2B
+2015032,arguedas sobrado christian enrique,2B
+2015046,arley coe juan ignacio,2B
+2017011,artavia arce maría isabella,2B
+2017070,cubero mora fátima lucía,2B
+2017032,giordano ureña stefano enrico,2B
+2019090,gonzález vargas fabiola maría,2B
+2017004,méndez guevara juliana,2B
+2016040,mussio blanco alessandra,2B
+2017013,quesada corrales juan pablo,2B
+2017031,quirós santana sebastián,2B
+2015060,serrato ovares priscila,2B
+2016061,villalobos arroyo maripaz,2B
+2017022,aguilar sáenz ariela,2A
+2016024,alvarado alfaro guadalupe teresita,2A
+2020086,arias jiménez santiago,2A
+2019150,arias sánchez angel esteban,2A
+2020081,arias venegas mariana,2A
+2015001,chaves alfaro mariana marcela,2A
+2017015,chaves olazábal juan ignacio,2A
+2017043,delgado hubbell clara kiyomi,2A
+2017035,fernández mora esteban,2A
+2018157,molina mora santiago,2A
+2018146,moya arroyo felipe,2A
+2020108,pacheco rodriguez mariana,2A
+2019080,rojas blanco mariángel,2A
+2016032,rojas cortés ana maría,2A
+2018141,segura mejías paula,2A
+2016013,villalobos lópez maría celeste,2A
+2011108,amador messeguer juan pablo,5C
+2020055,calzada gonzalez matias,5C
+2012079,cedeño vargas mariana,5C
+2013090,delgado romero nicole tatiana,5C
+2019121,fernández cordero luciana,5C
+2013009,garrote villalobos tamara,5C
+2013003,gonzález fallas josé daniel,5C
+2011046,jiménez navarro maría laura,5C
+2013042,jiménez sánchez maría fernanda,5C
+2013048,ortega alvarado mónica,5C
+2018162,quirós campos federico,5C
+2014038,ramírez aguilar julián josé,5C
+2014036,rivera gonzález diego,5C
+2015040,rojas gonzález isabel,5C
+2014073,rojas víquez josé manuel,5C
+2012095,rosales quirós camila,5C
+2019196,torres zúñiga jackson,5C
+2013080,vargas pinto fernando ernesto,5C
+2012072,zúñiga gamboa paula elena,5C
+2017066,azofeifa cortés maría pía,1A
+2016106,bolaños calvo ana lucía,1A
+2018145,broce chacón cora paula,1A
+2020070,donato bolaños ignacio,1A
+2015079,echeverría jenkins constanza,1A
+2016105,lora tobal lissa marie,1A
+2017023,mata cordero julián josé,1A
+2020012,mora rojas emmanuel jose,1A
+2016009,morales zenteno victoria,1A
+2016022,oviedo ulloa josué david,1A
+2017021,quirós zúñiga felipe andrés,1A
+2016030,salazar rodríguez ariel,1A
+2016023,tejera gonzález mariangel,1A
+2018104,torres camacho josé pablo,1A
+2017014,vargas chan diego alonso,1A
+2019140,acón mora isabella,1B
+2018110,ajún rojas lucía,1B
+2019100,alfaro porras tomás,1B
+2017029,castro rivera mariana,1B
+2018116,ferrín gonzález samuel,1B
+2019182,guerra bagnarello ángela,1B
+2018114,gutiérrez escobar alejandro miguel,1B
+2015043,león mena sara elisa,1B
+2019120,monge orozco luciana,1B
+2020015,montejo salazar daniel,1B
+2019156,poutvinski garcia svetlana,1B
+2019188,quintana guevara luis gonzalo,1B
+2018125,román rodríguez isabela,1B
+2017085,uribe díaz felipe,1B
+2013055,alvarado vega felipe,4A
+2012069,álvarez rojas gloriana de los ángeles,4A
+2015020,hernández mora fabián,4A
+2015050,hernández vargas valeria,4A
+2020105,lópez alvarado adrián,4A
+2014031,madrigal araya paula,4A
+2014047,orozco robles emiliano,4A
+2012082,porras gutiérrez andrés,4A
+2015068,ramírez hernández monserrat,4A
+2013098,ulloa hernández mathias,4A
+2013078,umaña morales miguel ángel,4A
+2015013,urbina vargas david,4A
+2015082,vargas rojas lucy,4A
+2013086,villalobos barquero maripaz,4A
+2012018,zamora vargas samuel,4A
+2018177,zhang guo yamila yinuo,4A
+2019112,acón mora victoria,4B
+2013054,alvarado vega sebastián,4B
+2012123,borbón fürchtgott mateo,4B
+2015085,castillo garcía valentina,4B
+2018111,ching aguilar thomas lin,4B
+2014049,cubero mora isaac gabriel,4B
+2016037,gonzález moraga santiago josué,4B
+2014002,hanson álvarez sarah jane,4B
+2015069,hernández hernández gabriel de jesús,4B
+2014050,jiménez villalta david,4B
+2015037,ledezma flores gimena,4B
+2013057,ortiz cabrera maría fernanda,4B
+2014020,salazar rodríguez jimena,4B
+2016020,ulate zúñiga fabiola,4B
+2015048,villegas mata andrés,4B
+2017072,viveros pérez jadelyn,4B
+2020089,abanto german abril,4C
+2015004,abarca gonzález gabriel,4C
+2012001,aguilar garcía andrés ernesto,4C
+2017058,aguilar ramírez daniel,4C
+2014075,aguilar sáenz julián,4C
+2013005,arias wang lucía,4C
+2017068,blanco cubillos valeria,4C
+2016041,bolaños calvo mariana,4C
+2012118,gowty porras isabella maría,4C
+2014062,hernández ávila felipe,4C
+2018119,kinderson barrantes jurgen,4C
+2014022,moreno castro isabella,4C
+2014051,muñoz parís gabriel,4C
+2020106,pacheco rodriguez valentina,4C
+2012014,ramírez mora saúl enrique,4C
+2016150,sawyers pérez nadia felicity,4C
+2014024,acosta murillo sebastián,5A
+2015076,alemán valerio aurora desireé,5A
+2011020,barrantes leitón eugenia,5A
+2018120,bonilla barrantes nicolás,5A
+2012002,brusó ramírez bianca,5A
+2012008,castro fernández david,5A
+2013056,de la peña sánchez alejandro josé,5A
+2014071,delgado hubbell jimena kikuno,5A
+2011066,fallas azofeifa luis andrés,5A
+2014021,ferrín gonzález anamaría,5A
+2013066,garrote villalobos sebastián,5A
+2014046,jenkins brenes catalina marie,5A
+2012122,jenkins galeano ana lucía,5A
+2020016,pereira villalobos emiliana,5A
+2019094,ramírez rojas catalina,5A
+2013028,rodríguez quintero samara de los ángeles,5A
+2014060,rojas prendas antonio,5A
+2013069,trejos méndez alberto,5A
+2013065,zúñiga salazar verónica,5A
+2014037,acón chacón felipe,5B
+2014025,acosta murillo daniela,5B
+2014041,alvarado alfaro mariana del carmen,5B
+2019151,arias sánchez alba lilia,5B
+2011070,campos valverde emma,5B
+2012066,castrejón quesada felipe,5B
+2013093,garcía vásquez matías,5B
+2013002,garrote villalobos gabriel,5B
+2013001,heilbron chacón gabriel,5B
+2012119,huang ou steven,5B
+2015058,león araya josé daniel,5B
+2019081,mora quesada santiago,5B
+2013041,orozco alfaro mónica,5B
+2016043,pacheco vega elizabeth de los ángeles,5B
+2014068,ries lópez camille,5B
+2014064,sánchez garro valentina,5B
+2019001,vargas cruz aranza,5B
+2012116,vega cedeño sofía beatriz,5B
+2020030,alfaro bravo nicolas,K
+2020075,arias venegas tomas,K
+2018121,brenes hernández mathías,K
+2019211,campos valverde leandro numa,K
+2019193,castro zúñiga victoria,K
+2019104,fallas mohs maría cristina,K
+2020063,jimenez vargas diana maria,K
+2019198,liang zheng deimy,K
+2018131,marín herrera alejandro,K
+2018153,marín sánchez cristina,K
+2018100,millán valverde natalia,K
+2018101,montero solís mariana,K
+2018107,morales mejías andrés humberto,K
+2017084,moreira vargas adrián,K
+2017073,morejón solano tomás,K
+2020008,peace gonzalez benjamin,K
+2018152,peralta alvarado juan pablo,K
+2017088,sánchez briones saúl,K
+2020085,soto bonilla santiago,K
+2019117,umaña castro maría paula,K
+2018103,yong díjeres lucía,K
+2019115,aguilar garcía juan pablo,K
+2019204,araya morera jimena,K
+2018126,araya ugalde emma,K
+2020052,avila araya juan pablo,K
+2018149,ávila sandoval valeria,K
+2018143,barrantes ferreira andrés,K
+2019206,corea jarquín mathías josué,K
+2019192,garita vargas viviana,K
+2018124,hutchinson quesada sara,K
+2020039,morales rodriguez emma,K
+2020107,pacheco rodriguez ignacio,K
+2020006,pezo ugarte luciana,K
+2018155,ramírez serrano felipe,K
+2020007,ramirez villalobos victoria,K
+2020010,salazar chaves maria pia,K
+2020103,sanchez garro danilo,K
+2020011,sanchez umaña linda guadalupe,K
+2018108,vargas matamoros sofía,K
+2018170,villalobos barquero juan pablo,K
+2020037,villalobos guido marta elena,K
+2020003,zarate volio alejandro,K
+2020068,aguilar miranda emma,PK
+2020077,alvarado alfaro fatima catalina,PK
+2019092,borbón fürchtgott emma,PK
+2020046,bravo monge emma lucia,PK
+2019084,díez porras maripaz,PK
+2019131,gonzález cordero pía,PK
+2020078,jiron venegas luca,PK
+2020072,montero mendez lucia,PK
+2020044,pallotti guerrero alessandro,PK
+2020064,poutvinski garcia aleksander,PK
+2020102,robles leiva felipe antonio,PK
+2020031,ulate giangiulio daniel jose,PK
+2019056,valverde fernández amalia,PK
+2020005,vargas da luz samantha,PK
+2019087,zeledón cartín roberto,PK
+2019118,alvarado alfaro josé esteban,P
+2017040,arce martínez héctor ignacio,P
+2018117,blanco sancho tomás,P
+2019106,campos mata fernando,P
+2017075,guerrero coto juan manuel,P
+2018112,gutiérrez chaves thayris camila,P
+2018115,gutiérrez escobar maría paula,P
+2018156,molina mora matías,P
+2020079,montero marabe sebastian,P
+2019111,pallotti guerrero luca,P
+2018128,rodríguez madriz valentina,P
+2019202,velásquez marenco samantha,P
+2019180,artavia arce gabriel,P
+2019105,bravo marín héctor gabriel,P
+2019006,carballo ramirez julian,P
+2017063,hernández araya carlos javier,P
+2018109,hidalgo camacho fernán,P
+2019114,lutz argüello randolph,P
+2017041,meneses gonzález valeria,P
+2019225,montero méndez elena,P
+2020073,mora carranza emiliano,P
+2020074,morera ramirez adrian,P
+2019110,orozco robles leonor,P
+2019119,rivera gonzález paz,P
+2019113,acuña hernández alfredo,P
+2018113,brenes chinchilla ghia,P
+2017028,carmona mena alberto,P
+2018148,cartín arteaga maripaz,P
+2020101,martinez ramirez santiago,P
+2017042,meneses gonzález nicolás,P
+2019007,muñoz fonseca mackenzie,P
+2017039,murillo salazar leonardo,P
+2017076,parada alfaro mariana,P
+2017064,picado chaves saúl esteban,P
+2017086,rodríguez lópez nicolás andrés,P
+2018165,salgado byers annelise claire,P
+2019181,urbina vargas alejandro,P
+2020096,barboza kim franco,M
+2019210,gutiérrez garcía isabella,M
+2019186,lópez elizondo ethan ignacio,M
+2019197,ramírez gonzález josé daniel,M
+2020053,ruiz morales gabriel,M
+2019205,soto villegas tobías,M
+2020042,arroyo arroliga jimena,7A
+2017055,castillo bonilla sebastián andrés,7A
+2009079,céspedes benavides camila maría,7A
+2015067,chacón madrigal luciana,7A
+2012036,chúa velásquez gabriela,7A
+2014003,fernández gómez daniela maría,7A
+2010082,flores monge angelina isabel,7A
+2012107,guerra bagnarello mario alejandro,7A
+2012100,huang ou jessica,7A
+2019152,lópez alvarado matías,7A
+2012057,mora solano ariana,7A
+2011009,morejón solano jorge alberto,7A
+2019153,muñoz montero tatiana,7A
+2012073,ramírez mejía marypaz,7A
+2020054,salerno jiménez arianna,7A
+2011006,ulate rivera luis diego,7A
+2012093,villalobos lópez marcelo,7A
+2016056,acosta zárate maría luisa,7B
+2012081,aguilar pineda sebastián,7B
+2012124,borbón fürchtgott felipe,7B
+2018127,calzada gonzález juliana,7B
+2014016,castillo garcía alejandro,7B
+2012075,chaves vindas lucas,7B
+2017053,donato bolaños franco,7B
+2019088,garcía fonseca diana,7B
+2020082,nuñez okubo emi,7B
+2010036,odio morera constanza gabriela,7B
+2013081,quirós lópez alexa,7B
+2011051,rojas cortés antonio,7B
+2010102,ulloa hernández mariana,7B
+2012110,vega rosales gabriela,7B
+2011002,zumbado hernández daniel,7B
+2012065,zúñiga quesada valentina,7B
+2009027,baltodano rodas tomás antonio,7C
+2011100,benavides saborío mauricio,7C
+2019201,chacón carmona laura,7C
+2011074,gómez correa freddy santiago,7C
+2010139,guerrero quirós sofía,7C
+2012022,jenkins brenes maríanne elizabeth,7C
+2011045,kinderson barrantes sebastián,7C
+2012005,mora bermejo valeria,7C
+2010070,núñez brenes valeria,7C
+2010025,ocampo guadamuz luciana,7C
+2020002,pereira villalobos constanza,7C
+2009145,phillips mojica maría paula,7C
+2014077,riera alvarez sofía,7C
+2017054,salas meléndez mariana,7C
+2020048,sancho chaves beatriz,7C
+2012003,sauma zaglul emile antonio,7C
+2011103,valembois madrigal daniel,7C
+2013064,vargas cruz francisco,7C
+2020009,castro salas sofia,7D
+2009080,céspedes benavides pamela maría,7D
+2013063,chaves mathieu abigail,7D
+2020065,hernández azofeifa florencia,7D
+2011095,hidalgo castro giulianna,7D
+2010110,jiménez navarro isabella,7D
+2012053,madrigal zamora roberto,7D
+2011069,padilla campos daniela,7D
+2019154,poutvinski garcia stanislav,7D
+2013082,quirós lópez sebastián,7D
+2013019,ramírez aguilar lucía marcela,7D
+2010030,ramos solano santiago,7D
+2010032,rodríguez quintero santiago,7D
+2011088,trejos méndez fernanda,7D
+2010097,umaña morales isabella,7D
+2011030,vásquez rodríguez julián,7D
+2011003,zumbado hernández sebastián,7D
+2019029,acón zeledón maría josé,8A
+2009031,acosta botero howard andrés,8A
+2013101,alemán valerio aidan elías,8A
+2018132,arévalo borge verónica,8A
+2009082,azofeifa ayi daniel,8A
+2019079,blanco arroyo maría camila,8A
+2008222,castro alfaro santiago,8A
+2011112,cubero mora mariana sofía,8A
+2011067,díaz villalobos chiara,8A
+2008132,garcía fernández daniel,8A
+2012032,gómez marchena sofía,8A
+2019053,gómez quesada maría fernanda,8A
+2019059,kohl mayorga dion gabriel,8A
+2012076,lan huang keven,8A
+2011097,madrigal zamora daniela,8A
+2009124,meléndez espinoza santiago josé,8A
+2019002,quesada arroyo melissa,8A
+2012039,quirós alvarado matías,8A
+2010071,ruiz vásquez carlos andrés,8A
+2012060,vargas alfaro fabián andrés,8A
+2009042,vega barrantes sofía,8A
+2009061,zuñiga villalobos valerie,8A
+2009032,acosta botero juan david,8B
+2008143,canales fernández arianna,8B
+2015070,fallas monge elena,8B
+2017056,maroto siles fabiola,8B
+2010100,mena lópez monserrat,8B
+2019082,mena ortiz amanda,8B
+2019049,montero esquivel daniel,8B
+2010135,muñoz murillo sebastián,8B
+2012062,ortega alvarado ernesto josé,8B
+2019054,pérez barquero maría valeria,8B
+2019050,polonio berti sebastián,8B
+2010039,ries lópez irina,8B
+2011073,sáenz brautigam oscar emilio,8B
+2012038,salas rojas julio andrés,8B
+2011042,serrano monge josé antonio,8B
+2009063,solís paganella cristina,8B
+2009130,thalman delgado dana,8B
+2013092,truque rivera alexia,8B
+2012071,uriarte wang maría fernanda,8B
+2010086,villegas castillo jorge alejandro,8B
+2009085,zuñiga gamboa josé daniel,8B
+2011094,zuñiga segura andrés,8B
+2017019,acevedo ramírez fabián,8C
+2010002,alvarado chibbaro gabriela,8C
+2010083,barrantes fuentes andrés,8C
+2012074,benavides garro abigail de los ángeles,8C
+2010035,bolaños castellón javier fernando,8C
+2019069,carballo marchany elías andrés,8C
+2019207,fernández cordero gabriel,8C
+2016050,gonzález moraga ricardo andrés,8C
+2010027,guillén paniagua christopher,8C
+2010057,gutiérrez garita andrés,8C
+2010088,hidalgo cambronero niah valeria,8C
+2010115,jenkins galeano daniela,8C
+2010143,mesén méndez julián,8C
+2010010,quirós trejos jorge andrés,8C
+2012087,ramírez vargas isaac,8C
+2010092,rodríguez morales cristel johana,8C
+2010033,rodríguez quintero fabiana maría,8C
+2011086,rojas méndez alexander,8C
+2015077,rojas morales fabián,8C
+2009141,rojas vega ximena,8C
+2019057,sanabria mora sara,8C
+2012070,uriarte wang jimena,8C
+2013097,araya castillo josé pablo,9A
+2010060,bagnarello bolaños giuliana,9A
+2007193,baltodano rodas cristina elena,9A
+2012040,beita elizondo josé eduardo,9A
+2018007,blanco mora maripaz,9A
+2007008,castro fernández catalina,9A
+2008216,fallas azofeifa luis felipe,9A
+2008073,gonzález flores victorio esteban,9A
+2008068,gonzález mora ana cristina,9A
+2008214,guerra esquivel julián,9A
+2011060,gutiérrez vindas jorge andrés,9A
+2019074,kopper pérez ana sofía,9A
+2017074,lópez alvarado carolina,9A
+2012068,madrigal wielewski luana,9A
+2017057,monge ramírez maría paula,9A
+2020083,núñez okubo isao,9A
+2018013,rojas sáenz dariana alessandra,9A
+2009114,solano callaci constanza maría,9A
+2016047,solano saltachín ruth andrea,9A
+2008147,villegas mata daniel,9A
+2010018,aguirre guido isaac gerardo,9B
+2008200,álvarez rojas lucía de los ángeles,9B
+2010040,ariño espinoza alfonso jesús,9B
+2011083,bolaños marín milena,9B
+2010009,gutiérrez freer jimena,9B
+2018003,hernández meléndez sofía michelle,9B
+2010069,hooker méndez bryan joshua,9B
+2010008,iturrino venegas sofía francisca,9B
+2018005,jiménez ugalde maría laura,9B
+2009016,jiménez villalta fiorella,9B
+2009055,loría zúñiga isabella,9B
+2018026,montero rojas camila,9B
+2010093,mora meza andrea,9B
+2018001,mora sánchez larissa,9B
+2009049,ortiz lópez david jesús,9B
+2009025,ortiz quesada amanda,9B
+2008095,ramírez mora maripaula,9B
+2009030,richmond sánchez adrián,9B
+2008154,serrano delgado sofia,9B
+2009096,víquez arguedas nicole,9B
+2009054,zelaya cordoba sebastián,9B
+2019038,abanto german ariel,9C
+2009053,aguilar tapia sofía,9C
+2016036,alvarado ramírez francela,9C
+2009015,argüello boza roberto josé,9C
+2010001,calderón espinosa de los monteros maría paula,9C
+2009044,carballo sánchez sara,9C
+2020047,castellón camacho sofía patricia,9C
+2008044,duque soto camila,9C
+2018006,gonzález soto ari jafeth,9C
+2009134,granados jiménez daniela,9C
+2009112,henao cordero alejandro andrés,9C
+2010101,jiménez villegas ariana,9C
+2011058,lan huang joanna yeushin,9C
+2018002,muñoz artavia paulo alejandro,9C
+2007118,navarro ellerbrock christian,9C
+2007197,phillips mojica emma sofía,9C
+2009028,porras flores daniel,9C
+2008050,ramírez hernández luis alejandro,9C
+2008027,rojas hernández jimena,9C
+2009075,vargas jiménez mariana,9C
+2010059,zamora cruz paola maría,9C
+2007176,alfaro garcía sofía isabel,10A
+2014044,brenes calderón alejandro,10A
+2008067,cruz delgado karina maría,10A
+2017034,fernández rivera sebastián,10A
+2010061,martínez villalobos ana monserrat,10A
+2020087,mora macaya maria fernanda,10A
+2008042,padilla campos angélica,10A
+2008210,quirós araya daniela,10A
+2014078,riera álvarez isabella,10A
+2015054,rodríguez saravia rafael (antonio),10A
+2007035,rojas víquez andrés,10A
+2018018,sanabria chaverri fiorella,10A
+2009109,solano brenes sofía del carmen,10A
+2018010,umaña sasso carolina,10A
+2008019,vargas lópez josé carlos,10A
+2008098,vargas valverde mariangel,10A
+2007054,vega barrantes nelson,10A
+2007195,zúñiga salazar sebastián,10A
+2008032,aguilar pacheco alexandra,10B
+2007174,alfaro garcía isaac germán,10B
+2008057,angulo salas daniela,10B
+2013044,cardoza garcía adrián alberto,10B
+2009056,cubero álvarez valentina,10B
+2006181,díaz vega nicol camila,10B
+2010065,lanzoni céspedes miranda luciana,10B
+2007145,montero campbell sofía maría,10B
+2009091,mora zeledón jimena,10B
+2016100,muñoz montero roberto,10B
+2007090,ocampo guadamuz jimena,10B
+2007005,pizarro camacho maría josé,10B
+2017037,rodríguez campos keren mariana,10B
+2008011,rojas cortés santiago,10B
+2008016,solís valerín ignacio,10B
+2019005,vargas cruz josé ignacio,10B
+2009086,zumbado vásquez daniel josé,10B
+2007175,alfaro garcía andrea paola,10C
+2019048,alfaro jiménez lucía,10C
+2017002,arias alvarado valentina,10C
+2007188,campos ramírez amanda,10C
+2009144,chen liu edwin,10C
+2007049,corrales ramírez roberto antonio,10C
+2009058,cubero álvarez jimena,10C
+2010134,león vargas natalia,10C
+2009064,mantilla quesada silvia,10C
+2009107,peñaranda soto alejandro,10C
+2009131,qiang yin cynthia yu,10C
+2007116,rodríguez morales bernardo,10C
+2009125,salazar granados felipe,10C
+2018027,sánchez uhrig antonio alejandro,10C
+2020049,sancho chaves ana lucía,10C
+2007192,vargas pinto alejandro esteban,10C
+2006095,acosta botero juana valentina,11A
+2006128,alvarado rodríguez gabriel francisco,11A
+2007006,azofeifa ayi isabel,11A
+2008133,bermúdez barquero erick abraham,11A
+2010062,cedeño vega edwin gabriel,11A
+2008103,cen wang xiao wen (wendy),11A
+2016005,esquivel hernández alejandro,11A
+2008078,hernández vega rebeca de guadalupe,11A
+2008017,monge leitón josé ignacio,11A
+2008072,ortiz cabrera josué emanuel,11A
+2016008,rivera beita sofía,11A
+2011061,rodríguez castillo mariana,11A
+2007016,rodríguez jiménez karen,11A
+2009111,sánchez hernández paula,11A
+2007112,sauma zaglul salma,11A
+2015051,solano saltachín javier alfredo,11A
+2007136,soto chan maría angélica,11A
+2008028,ulate zúñiga maría josé,11A
+2010126,vega cedeño christopher david,11A
+2018021,villalobos golfín andrea,11A
+2006166,villegas mata tomás,11A
+2007069,abud barrantes samir ariel,11B
+2011105,acevedo fontalvo juan pablo,11B
+2008153,araya garbanzo claudio esteban,11B
+2016006,burgos porras sofía,11B
+2008144,castillo pizarro andrey alonso,11B
+2007086,chaves guzmán mónica,11B
+2018024,flores montero paula,11B
+2008205,guerra esquivel gabriel,11B
+2011109,hernández gómez ana paula,11B
+2008145,hutchison martínez valeria,11B
+2008043,meseguer wong ana lucía,11B
+2012041,moreno amador maría paula,11B
+2010103,muñoz rodríguez tobías,11B
+2012042,muñoz rojas fabián david,11B
+2007095,quirós monge carlos daniel,11B
+2006007,rodríguez campos carlos alberto,11B
+2019085,rodríguez fernández isabela,11B
+2016002,sáenz bagnarello josé ignacio,11B
+2006012,salgado byers siara elise,11B
+2008134,vargas moya mario,11B
+2007043,alvarado chibbaro alejandra,11C
+2009148,araya chotocruz daniella elizabeth,11C
+2008090,badilla balma esteban,11C
+2008201,bruno dixon nathalie,11C
+2008079,canales fernández andrés guillermo,11C
+2009001,castellón cuevas laura,11C
+2007074,castro camacho valeria,11C
+2006185,cedeño vargas maría paula,11C
+2008094,chaves vindas matías,11C
+2008065,chúa velásquez andrea,11C
+2009129,guerrero quirós juliana inés,11C
+2008010,hernández román daniela,11C
+2009122,masís díaz francisco javier,11C
+2010078,matute condat norah vanessa,11C
+2007056,montoya cordero luis felipe,11C
+2006120,porras campos josé andré,11C
+2008085,quirós delgado santiago,11C
+2007015,rodríguez jiménez lucía,11C
+2010076,sáenz brautigam maripaz,11C
+2017026,salas meléndez camila,11C
+2006123,solís paganella julián,11C
+2007062,tejera gonzález maría celeste,11C
+2018028,van der laat gurdián rodrigo,11C

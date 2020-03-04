@@ -14,11 +14,14 @@ cd "$METEORDIR" || exit 2
 echo "Stopping soda"
 sudo systemctl stop soda.service
 if [[ -d $bundle ]]; then
-    rm -rf "$bundle"
+    if ! sudo rm -rf "$bundle"; then
+        echo "Error: removing old $bundle failed" >&2
+        exit 2
+    fi
 fi
 
 if ! meteor build --directory "$SRCDIR"; then
-    echo "Meteor build failed" >&2
+    echo "Error: Meteor build failed" >&2
     exit 2
 fi
 
@@ -26,6 +29,11 @@ cd "${bundle}/programs/server" || exit 2
 echo "python=/usr/bin/python2.7" >"$npmrc"
 if ! npm install; then
     echo "Error: 'npm install' failed" >&2
+    exit 2
+fi
+echo "Changing $bundle ownership to web user"
+if ! sudo chown -R web:web $bundle; then
+    echo "Error: Changing $bundle ownership failed" >&2
     exit 2
 fi
 

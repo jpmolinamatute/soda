@@ -4,7 +4,7 @@ import '../runBackup/runBackup.js';
 import { STUDENTS } from '../../../startup/both/index.js';
 import { setStudentInfo } from '../studentInfo.js';
 
-const isGrade = /(^[0-9]{1,2}[a-d]$)|P|PK|K/;
+const isGrade = /(^[0-9]{1,2}[A-D]$)|P[A-C]|PK[A-C]|K[A-C]/;
 const LIMIT = 30;
 
 function resetSearch(templateInstance, id) {
